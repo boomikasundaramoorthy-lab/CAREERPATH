@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Skill Gap Analysis | CAREERPATH</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: white;
+    background:
+        radial-gradient(circle at top left, #8e44ad, transparent 35%),
+        radial-gradient(circle at bottom right, #c471ed, transparent 30%),
+        linear-gradient(135deg, #16002b, #32104f, #4b176d);
+}
+
+/* NAVBAR */
+
+nav {
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #f8b6d2;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* MAIN */
+
+.container {
+    width: 90%;
+    max-width: 1050px;
+    margin: 30px auto 60px;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #f8b6d2;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 44px;
+    margin-bottom: 12px;
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #f3b6ff,
+        #f78fb3
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #e7d8f4;
+    line-height: 1.7;
+}
+
+/* CAREER BOX */
+
+.career-box {
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.17);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.career-box h2 {
+    color: #f8b6d2;
+    margin-bottom: 15px;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    outline: none;
+    border-radius: 13px;
+    background: #32104f;
+    color: white;
+    font-size: 16px;
+}
+
+/* READINESS */
+
+.readiness {
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.17);
+    backdrop-filter: blur(15px);
+}
+
+.readiness-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.readiness h2 {
+    font-size: 22px;
+}
+
+.percent {
+    color: #f78fb3;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.10);
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 65%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #c471ed,
+        #f78fb3
+    );
+    transition: 0.5s;
+}
+
+/* SKILLS */
+
+.section-title {
+    margin: 35px 0 18px;
+    font-size: 25px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.skill-card {
+    padding: 25px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(14px);
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-7px);
+    background: rgba(255,255,255,0.15);
+}
+
+.skill-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.skill-card h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.skill-card p {
+    color: #dfd0eb;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.have {
+    background: rgba(120,220,160,0.15);
+    color: #baffd0;
+}
+
+.need {
+    background: rgba(247,143,179,0.15);
+    color: #ffc4d9;
+}
+
+/* COURSE BOX */
+
+.course-box {
+    margin-top: 35px;
+    padding: 32px;
+    text-align: center;
+    border-radius: 24px;
+    background: linear-gradient(
+        135deg,
+        rgba(196,113,237,0.20),
+        rgba(247,143,179,0.12)
+    );
+    border: 1px solid rgba(255,255,255,0.16);
+}
+
+.course-box h2 {
+    margin-bottom: 10px;
+}
+
+.course-box p {
+    color: #dfd0eb;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 27px;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background: linear-gradient(
+        135deg,
+        #c471ed,
+        #f78fb3
+    );
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.06);
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .readiness-top {
+        gap: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <a href="index.html">
+        Home
+    </a>
+
+</nav>
+
+
+<div class="container">
+
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="badge">
+            📊 Smart Career Analysis
+        </div>
+
+        <h1>
+            Skill Gap Analysis
+        </h1>
+
+        <p>
+            Discover the skills you already have and
+            identify the skills you need to develop
+            for your dream career.
+        </p>
+
+    </div>
+
+
+    <!-- CAREER -->
+
+    <div class="career-box">
+
+        <h2>
+            🎯 Choose Your Target Career
+        </h2>
+
+        <select onchange="updateCareer(this.value)">
+
+            <option value="software">
+                💻 Software Developer
+            </option>
+
+            <option value="data">
+                📊 Data Analyst
+            </option>
+
+            <option value="uiux">
+                🎨 UI/UX Designer
+            </option>
+
+            <option value="cyber">
+                🔐 Cyber Security
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- READINESS -->
+
+    <div class="readiness">
+
+        <div class="readiness-top">
+
+            <h2>
+                🚀 Career Readiness
+            </h2>
+
+            <div class="percent" id="percent">
+                65%
+            </div>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progress">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILLS -->
+
+    <h2 class="section-title">
+        ✨ Your Skill Overview
+    </h2>
+
+
+    <div class="skills-grid">
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                🐍
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Useful for programming, automation,
+                data analysis and software development.
+            </p>
+
+            <span class="status have">
+                ✓ Already Have
+            </span>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                🌐
+            </div>
+
+            <h3>
+                HTML & CSS
+            </h3>
+
+            <p>
+                Essential skills for creating modern
+                and responsive web pages.
+            </p>
+
+            <span class="status have">
+                ✓ Already Have
+            </span>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                ⚡
+            </div>
+
+            <h3>
+                JavaScript
+            </h3>
+
+            <p>
+                Helps you create interactive websites
+                and modern web applications.
+            </p>
+
+            <span class="status need">
+                📚 Need to Improve
+            </span>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                🗄️
+            </div>
+
+            <h3>
+                SQL & Database
+            </h3>
+
+            <p>
+                Important for storing, managing and
+                working with application data.
+            </p>
+
+            <span class="status need">
+                📚 Need to Learn
+            </span>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                🧠
+            </div>
+
+            <h3>
+                Problem Solving
+            </h3>
+
+            <p>
+                Helps you understand problems and
+                create effective technical solutions.
+            </p>
+
+            <span class="status have">
+                ✓ Good Foundation
+            </span>
+
+        </div>
+
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                💬
+            </div>
+
+            <h3>
+                Communication
+            </h3>
+
+            <p>
+                An important skill for teamwork,
+                interviews and professional growth.
+            </p>
+
+            <span class="status need">
+                📚 Keep Improving
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- COURSES -->
+
+    <div class="course-box">
+
+        <h2>
+            🌸 Ready to Close Your Skill Gap?
+        </h2>
+
+        <p>
+            Explore courses and start learning the
+            skills needed for your chosen career.
+        </p>
+
+        <a href="courses.html" class="btn">
+            Explore Courses ✨
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function updateCareer(career) {
+
+    let percentage = 65;
+
+    if (career === "data") {
+        percentage = 55;
+    }
+
+    if (career === "uiux") {
+        percentage = 72;
+    }
+
+    if (career === "cyber") {
+        percentage = 48;
+    }
+
+    document.getElementById("percent").innerText =
+        percentage + "%";
+
+    document.getElementById("progress").style.width =
+        percentage + "%";
+}
+
+</script>
+
+</body>
+</html>
