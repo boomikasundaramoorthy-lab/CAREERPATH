@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREERPATH | Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad, #d98cff);
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .logo {
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #ead7ff;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            font-size: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #f7eaff;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            outline: none;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #351044;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            box-shadow: 0 0 0 3px rgba(225, 170, 255, 0.45);
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(220, 120, 240, 0.3);
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(220, 120, 240, 0.45);
+        }
+
+        .login-text {
+            text-align: center;
+            color: #ead7ff;
+            font-size: 14px;
+            margin-top: 22px;
+        }
+
+        .login-text a {
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #f3ddff;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-home:hover {
+            color: white;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 32px 24px;
+            }
+
+            .logo {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">CAREERPATH</div>
+
+        <div class="tagline">
+            Your Journey • Your Skills • Your Future
+        </div>
+
+        <h2>Create Your Account ✨</h2>
+
+        <form>
+
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="input-group">
+                <label>Education</label>
+                <select required>
+                    <option value="">Select your education</option>
+                    <option>BCA</option>
+                    <option>B.Sc</option>
+                    <option>B.Com</option>
+                    <option>BBA</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="Confirm your password" required>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <div class="login-text">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </div>
+
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>
