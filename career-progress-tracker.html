@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Progress Tracker | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.2);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#f8c8ff;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:18px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.12);
+    color:#f7b8ff;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#e5d8eb;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:22px;
+    padding:25px;
+}
+
+.card h2{
+    margin-bottom:18px;
+}
+
+.goal{
+    font-size:25px;
+    font-weight:bold;
+    color:#f5c5ff;
+}
+
+.progress-area{
+    margin-top:20px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.progress-bar{
+    width:100%;
+    height:14px;
+    background:rgba(255,255,255,0.12);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    width:68%;
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    border-radius:20px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.stat{
+    text-align:center;
+    background:rgba(255,255,255,0.08);
+    padding:15px;
+    border-radius:15px;
+}
+
+.stat strong{
+    display:block;
+    font-size:25px;
+    color:#f6c8ff;
+}
+
+.skills{
+    display:grid;
+    gap:15px;
+}
+
+.skill{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px;
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+}
+
+.completed{
+    color:#9fffc8;
+}
+
+.pending{
+    color:#ffd28f;
+}
+
+.tasks{
+    display:grid;
+    gap:14px;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+}
+
+.task input{
+    width:20px;
+    height:20px;
+    accent-color:#c471ed;
+}
+
+.task.done span{
+    text-decoration:line-through;
+    opacity:0.6;
+}
+
+.button-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+button{
+    border:none;
+    padding:13px 25px;
+    border-radius:12px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.message{
+    text-align:center;
+    margin-top:18px;
+    color:#f5c5ff;
+    display:none;
+}
+
+@media(max-width:800px){
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+    h1{
+        font-size:32px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="profile.html">Profile</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+
+        <div class="badge">📈 Smart Career Tracking</div>
+
+        <h1>Career Progress Tracker</h1>
+
+        <p>
+            Track your skills, goals and learning progress
+            in one place.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="card">
+
+            <h2>🎯 My Career Goal</h2>
+
+            <div class="goal">
+                Software Developer
+            </div>
+
+            <div class="progress-area">
+
+                <div class="progress-info">
+                    <span>Overall Progress</span>
+                    <strong id="progressText">68%</strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>5</strong>
+                    Skills
+                </div>
+
+                <div class="stat">
+                    <strong>3</strong>
+                    Completed
+                </div>
+
+                <div class="stat">
+                    <strong>2</strong>
+                    Pending
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🛠️ Skill Progress</h2>
+
+            <div class="skills">
+
+                <div class="skill">
+                    <span>Python</span>
+                    <span class="completed">✓ Done</span>
+                </div>
+
+                <div class="skill">
+                    <span>HTML & CSS</span>
+                    <span class="completed">✓ Done</span>
+                </div>
+
+                <div class="skill">
+                    <span>JavaScript</span>
+                    <span class="completed">✓ Done</span>
+                </div>
+
+                <div class="skill">
+                    <span>SQL</span>
+                    <span class="pending">⏳ Pending</span>
+                </div>
+
+                <div class="skill">
+                    <span>React</span>
+                    <span class="pending">⏳ Pending</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>📅 Weekly Career Goals</h2>
+
+        <div class="tasks">
+
+            <label class="task">
+                <input type="checkbox"
+                       onchange="updateProgress(this)">
+                <span>Complete Python practice</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox"
+                       onchange="updateProgress(this)">
+                <span>Learn SQL basics</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox"
+                       onchange="updateProgress(this)">
+                <span>Complete one coding challenge</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox"
+                       onchange="updateProgress(this)">
+                <span>Update my resume</span>
+            </label>
+
+        </div>
+
+        <div class="button-area">
+
+            <button onclick="showMessage()">
+                💾 Save My Progress
+            </button>
+
+        </div>
+
+        <div class="message" id="message">
+            ✨ Your career progress has been updated!
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function updateProgress(checkbox){
+
+    let task = checkbox.parentElement;
+
+    if(checkbox.checked){
+        task.classList.add("done");
+    }else{
+        task.classList.remove("done");
+    }
+
+    let total =
+        document.querySelectorAll(".task").length;
+
+    let completed =
+        document.querySelectorAll(".task input:checked").length;
+
+    let percentage =
+        Math.round((completed / total) * 100);
+
+    let finalProgress =
+        Math.min(100, 68 + Math.round(percentage * 0.32));
+
+    document.getElementById("progressText")
+        .innerText = finalProgress + "%";
+
+    document.getElementById("progressBar")
+        .style.width = finalProgress + "%";
+}
+
+function showMessage(){
+
+    document.getElementById("message")
+        .style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>
