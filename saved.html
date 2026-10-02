@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Opportunities - CAREERPATH</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f3d7ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #ead8f5;
+            font-size: 17px;
+        }
+
+        .saved-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .saved-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+        }
+
+        .saved-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.17);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .icon {
+            font-size: 40px;
+        }
+
+        .star {
+            font-size: 25px;
+        }
+
+        .saved-card h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .company {
+            color: #f2c8ff;
+            margin-bottom: 12px;
+        }
+
+        .saved-card p {
+            color: #eadcf2;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .details {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .details span {
+            background: rgba(216, 170, 255, 0.20);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn,
+        .remove-btn {
+            flex: 1;
+            text-align: center;
+            padding: 11px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .view-btn {
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+        }
+
+        .remove-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+        }
+
+        .empty-box {
+            margin-top: 40px;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .empty-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-box p {
+            color: #eadcf2;
+            margin-bottom: 20px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+        }
+
+        @media (max-width: 700px) {
+            .saved-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Saved Opportunities ⭐</h1>
+            <p>Keep your favorite jobs, internships and courses in one place.</p>
+        </div>
+
+        <div class="saved-grid">
+
+            <div class="saved-card">
+                <div class="top">
+                    <div class="icon">💼</div>
+                    <div class="star">⭐</div>
+                </div>
+
+                <h2>Junior Web Developer</h2>
+                <div class="company">Tech Solutions</div>
+
+                <p>
+                    Start your career by working on modern websites
+                    and web applications.
+                </p>
+
+                <div class="details">
+                    <span>📍 Chennai</span>
+                    <span>💻 Full Time</span>
+                    <span>🌐 HTML/CSS</span>
+                </div>
+
+                <div class="buttons">
+                    <a href="jobs.html" class="view-btn">View Opportunity</a>
+                    <a href="#" class="remove-btn">Remove</a>
+                </div>
+            </div>
+
+
+            <div class="saved-card">
+                <div class="top">
+                    <div class="icon">🐍</div>
+                    <div class="star">⭐</div>
+                </div>
+
+                <h2>Python Developer Intern</h2>
+                <div class="company">Code Labs</div>
+
+                <p>
+                    Improve your Python skills through practical
+                    development projects.
+                </p>
+
+                <div class="details">
+                    <span>📍 Remote</span>
+                    <span>🎓 Internship</span>
+                    <span>🐍 Python</span>
+                </div>
+
+                <div class="buttons">
+                    <a href="jobs.html" class="view-btn">View Opportunity</a>
+                    <a href="#" class="remove-btn">Remove</a>
+                </div>
+            </div>
+
+
+            <div class="saved-card">
+                <div class="top">
+                    <div class="icon">🤖</div>
+                    <div class="star">⭐</div>
+                </div>
+
+                <h2>AI & Machine Learning</h2>
+                <div class="company">CAREERPATH Course</div>
+
+                <p>
+                    Learn the fundamentals of Artificial Intelligence
+                    and Machine Learning.
+                </p>
+
+                <div class="details">
+                    <span>📚 Course</span>
+                    <span>⏱ 12 Weeks</span>
+                    <span>🤖 AI/ML</span>
+                </div>
+
+                <div class="buttons">
+                    <a href="courses.html" class="view-btn">View Course</a>
+                    <a href="#" class="remove-btn">Remove</a>
+                </div>
+            </div>
+
+
+            <div class="saved-card">
+                <div class="top">
+                    <div class="icon">🎨</div>
+                    <div class="star">⭐</div>
+                </div>
+
+                <h2>UI/UX Design</h2>
+                <div class="company">CAREERPATH Course</div>
+
+                <p>
+                    Learn user interface and user experience design
+                    and create beautiful digital experiences.
+                </p>
+
+                <div class="details">
+                    <span>📚 Course</span>
+                    <span>⏱ 6 Weeks</span>
+                    <span>🎨 Design</span>
+                </div>
+
+                <div class="buttons">
+                    <a href="courses.html" class="view-btn">View Course</a>
+                    <a href="#" class="remove-btn">Remove</a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="empty-box">
+            <h2>🔎 Explore More Opportunities</h2>
+            <p>
+                Discover new jobs, internships and courses
+                that match your career interests.
+            </p>
+
+            <a href="jobs.html" class="explore-btn">
+                Explore Jobs
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
