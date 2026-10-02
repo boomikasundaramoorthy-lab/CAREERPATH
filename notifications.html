@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - CAREERPATH</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f3d7ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #ead8f5;
+        }
+
+        .notification {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.20);
+            transition: 0.3s;
+        }
+
+        .notification:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.17);
+        }
+
+        .icon {
+            min-width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(216, 170, 255, 0.22);
+            font-size: 27px;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .content h2 {
+            font-size: 19px;
+            margin-bottom: 7px;
+        }
+
+        .content p {
+            color: #eadcf2;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .time {
+            color: #d9a8f2;
+            font-size: 13px;
+        }
+
+        .badge {
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .bottom-box {
+            margin-top: 35px;
+            text-align: center;
+            padding: 28px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .bottom-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .bottom-box p {
+            color: #eadcf2;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+        }
+
+        @media (max-width: 600px) {
+            .heading h1 {
+                font-size: 30px;
+            }
+
+            .notification {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Notifications 🔔</h1>
+            <p>Stay updated with jobs, courses and career opportunities.</p>
+        </div>
+
+        <div class="notification">
+            <div class="icon">💼</div>
+
+            <div class="content">
+                <h2>New Job Opportunity</h2>
+                <p>
+                    A new Junior Web Developer opportunity has been added.
+                    Check the latest job details.
+                </p>
+                <span class="time">10 minutes ago</span>
+            </div>
+
+            <span class="badge">NEW</span>
+        </div>
+
+        <div class="notification">
+            <div class="icon">🎓</div>
+
+            <div class="content">
+                <h2>New Course Available</h2>
+                <p>
+                    AI & Machine Learning course is now available
+                    in the Courses section.
+                </p>
+                <span class="time">1 hour ago</span>
+            </div>
+
+            <span class="badge">NEW</span>
+        </div>
+
+        <div class="notification">
+            <div class="icon">📚</div>
+
+            <div class="content">
+                <h2>Skill Development Reminder</h2>
+                <p>
+                    Improve your Python and Web Development skills
+                    to prepare for more opportunities.
+                </p>
+                <span class="time">Yesterday</span>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="icon">⭐</div>
+
+            <div class="content">
+                <h2>Saved Opportunity Update</h2>
+                <p>
+                    One of your saved opportunities has been updated.
+                    Check your Saved Opportunities page.
+                </p>
+                <span class="time">2 days ago</span>
+            </div>
+        </div>
+
+        <div class="notification">
+            <div class="icon">🎯</div>
+
+            <div class="content">
+                <h2>Career Recommendation</h2>
+                <p>
+                    Complete your career profile to receive
+                    personalized career recommendations.
+                </p>
+                <span class="time">3 days ago</span>
+            </div>
+        </div>
+
+        <div class="bottom-box">
+            <h2>🚀 Keep Growing</h2>
+            <p>
+                Explore new opportunities and continue building
+                your skills for a successful career.
+            </p>
+
+            <a href="careers.html" class="btn">
+                Explore Careers
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
