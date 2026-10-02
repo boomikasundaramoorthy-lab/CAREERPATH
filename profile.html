@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREERPATH | Student Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad, #d98cff);
+            color: white;
+            padding: 30px;
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #ead7ff;
+        }
+
+        .profile-card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .profile-top {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .avatar {
+            width: 95px;
+            height: 95px;
+            margin: auto;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #c471ed, #f78fb3);
+            font-size: 38px;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(220,120,240,0.35);
+        }
+
+        .profile-top h2 {
+            margin-top: 15px;
+            font-size: 25px;
+        }
+
+        .profile-top span {
+            color: #ead7ff;
+            font-size: 14px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .detail-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .detail-box h3 {
+            color: #f3caff;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .detail-box p {
+            font-size: 16px;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skills h3 {
+            margin-bottom: 15px;
+            color: #f3caff;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 9px 16px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #7b2cbf, #c471ed);
+            font-size: 13px;
+        }
+
+        .edit-btn {
+            display: block;
+            width: 220px;
+            margin: 30px auto 0;
+            padding: 14px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 15px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+
+            .profile-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html" class="home-link">← Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Student Profile</h1>
+            <p>Manage your career information and skills</p>
+        </div>
+
+        <div class="profile-card">
+
+            <div class="profile-top">
+                <div class="avatar">S</div>
+                <h2>Student Name</h2>
+                <span>BCA Student</span>
+            </div>
+
+            <div class="details">
+
+                <div class="detail-box">
+                    <h3>📧 Email</h3>
+                    <p>student@example.com</p>
+                </div>
+
+                <div class="detail-box">
+                    <h3>📱 Phone</h3>
+                    <p>+91 XXXXX XXXXX</p>
+                </div>
+
+                <div class="detail-box">
+                    <h3>🎓 Education</h3>
+                    <p>Bachelor of Computer Applications</p>
+                </div>
+
+                <div class="detail-box">
+                    <h3>📍 Location</h3>
+                    <p>Tamil Nadu, India</p>
+                </div>
+
+            </div>
+
+            <div class="skills">
+                <h3>💜 Skills</h3>
+
+                <div class="skill-list">
+                    <div class="skill">Python</div>
+                    <div class="skill">HTML</div>
+                    <div class="skill">CSS</div>
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">Communication</div>
+                </div>
+            </div>
+
+            <button class="edit-btn">Edit Profile ✨</button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
