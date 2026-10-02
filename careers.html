@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREERPATH | Career Guidance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad, #d98cff);
+            color: white;
+            padding: 25px;
+        }
+
+        .navbar {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 45px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .heading h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #ead7ff;
+            font-size: 15px;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .career-card {
+            padding: 30px 25px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            transition: 0.3s;
+        }
+
+        .career-card:hover {
+            transform: translateY(-7px);
+            background: rgba(255,255,255,0.17);
+        }
+
+        .icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: linear-gradient(135deg, #7b2cbf, #c471ed);
+            margin-bottom: 20px;
+        }
+
+        .career-card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .career-card p {
+            color: #ead7ff;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            padding: 6px 11px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.13);
+            color: #f3dfff;
+            font-size: 11px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .quiz-box {
+            margin-top: 40px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 25px;
+            background: linear-gradient(
+                135deg,
+                rgba(123,44,191,0.55),
+                rgba(247,143,179,0.35)
+            );
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .quiz-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .quiz-box p {
+            color: #f2ddff;
+            margin-bottom: 20px;
+        }
+
+        .quiz-btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 14px;
+            background: white;
+            color: #64158a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 850px) {
+            .career-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            body {
+                padding: 15px;
+            }
+
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html" class="home-link">← Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Explore Career Paths ✨</h1>
+            <p>Discover careers that match your interests, skills and goals.</p>
+        </div>
+
+        <div class="career-grid">
+
+            <div class="career-card">
+                <div class="icon">💻</div>
+                <h2>Software Developer</h2>
+                <p>
+                    Build websites, applications and software solutions
+                    using modern programming technologies.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">Java</span>
+                    <span class="skill">JavaScript</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+            <div class="career-card">
+                <div class="icon">🤖</div>
+                <h2>AI & Data Science</h2>
+                <p>
+                    Work with artificial intelligence, machine learning
+                    and data-driven technologies.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">AI</span>
+                    <span class="skill">Machine Learning</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+            <div class="career-card">
+                <div class="icon">🎨</div>
+                <h2>UI/UX Designer</h2>
+                <p>
+                    Design attractive and user-friendly digital products,
+                    websites and mobile applications.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Figma</span>
+                    <span class="skill">UI Design</span>
+                    <span class="skill">Creativity</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+            <div class="career-card">
+                <div class="icon">📊</div>
+                <h2>Data Analyst</h2>
+                <p>
+                    Analyze information and create useful insights
+                    to support business decisions.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Excel</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Power BI</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+            <div class="career-card">
+                <div class="icon">🌐</div>
+                <h2>Web Developer</h2>
+                <p>
+                    Create responsive and interactive websites using
+                    modern web development technologies.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+            <div class="career-card">
+                <div class="icon">🔐</div>
+                <h2>Cyber Security</h2>
+                <p>
+                    Protect systems, applications and networks from
+                    security threats and attacks.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Networking</span>
+                    <span class="skill">Security</span>
+                    <span class="skill">Linux</span>
+                </div>
+
+                <a href="#" class="explore-btn">Explore Career</a>
+            </div>
+
+        </div>
+
+        <div class="quiz-box">
+            <h2>Not Sure Which Career Fits You? 💜</h2>
+            <p>Take our Career Quiz and discover your suitable career path.</p>
+            <a href="#" class="quiz-btn">Take Career Quiz ✨</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
