@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Quiz | CAREERPATH</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad);
+    color: white;
+}
+
+nav {
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #f78fb3;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 30px auto 60px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.title p {
+    color: #eadcff;
+}
+
+.quiz-card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.question {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.option {
+    display: block;
+    background: rgba(255,255,255,0.10);
+    padding: 14px;
+    border-radius: 12px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    background: rgba(247,143,179,0.3);
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #c471ed, #f78fb3);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.result {
+    display: none;
+    text-align: center;
+    background: rgba(255,255,255,0.15);
+    padding: 35px;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.result h2 {
+    color: #f78fb3;
+    margin-bottom: 15px;
+}
+
+.result p {
+    line-height: 1.7;
+    color: #f0e6ff;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+@media(max-width:600px) {
+    .title h1 {
+        font-size: 30px;
+    }
+
+    .quiz-card {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+    <a href="index.html">Home</a>
+</nav>
+
+<div class="container">
+
+    <div class="title">
+        <h1>🧠 Career Quiz</h1>
+        <p>Answer a few questions and discover suitable career areas.</p>
+    </div>
+
+    <form id="quizForm">
+
+        <div class="quiz-card">
+            <div class="question">
+                1. What type of work do you enjoy?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q1" value="tech">
+                Coding and Technology
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="design">
+                Designing and Creativity
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="data">
+                Numbers and Analysis
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="security">
+                Security and Problem Solving
+            </label>
+        </div>
+
+
+        <div class="quiz-card">
+            <div class="question">
+                2. Which skill do you like most?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q2" value="tech">
+                Programming
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="design">
+                Creativity
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="data">
+                Mathematics
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="security">
+                Logical Thinking
+            </label>
+        </div>
+
+
+        <div class="quiz-card">
+            <div class="question">
+                3. What kind of problems do you enjoy solving?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q3" value="tech">
+                Software problems
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="design">
+                User experience problems
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="data">
+                Data and business problems
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="security">
+                Security problems
+            </label>
+        </div>
+
+
+        <div class="quiz-card">
+            <div class="question">
+                4. Which career sounds interesting to you?
+            </div>
+
+            <label class="option">
+                <input type="radio" name="q4" value="tech">
+                Software Developer
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="design">
+                UI/UX Designer
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="data">
+                Data Analyst
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="security">
+                Cyber Security
+            </label>
+        </div>
+
+
+        <button type="button" onclick="showResult()">
+            Get My Career Result ✨
+        </button>
+
+    </form>
+
+
+    <div class="result" id="result">
+        <h2 id="resultTitle"></h2>
+        <p id="resultText"></p>
+
+        <a class="back" href="careers.html">
+            Explore Career Paths →
+        </a>
+    </div>
+
+</div>
+
+
+<script>
+
+function showResult() {
+
+    let questions = ["q1", "q2", "q3", "q4"];
+
+    let scores = {
+        tech: 0,
+        design: 0,
+        data: 0,
+        security: 0
+    };
+
+    for (let q of questions) {
+
+        let answer = document.querySelector(
+            'input[name="' + q + '"]:checked'
+        );
+
+        if (!answer) {
+            alert("Please answer all questions.");
+            return;
+        }
+
+        scores[answer.value]++;
+    }
+
+    let career = "";
+    let description = "";
+
+    if (scores.tech >= scores.design &&
+        scores.tech >= scores.data &&
+        scores.tech >= scores.security) {
+
+        career = "💻 Software Development";
+        description =
+        "Your answers show an interest in coding, technology and software. You can explore careers such as Software Developer, Web Developer and Full Stack Developer.";
+
+    } else if (scores.design >= scores.tech &&
+               scores.design >= scores.data &&
+               scores.design >= scores.security) {
+
+        career = "🎨 UI/UX & Creative Design";
+        description =
+        "Your answers show creativity and interest in user experience. You can explore UI/UX Design, Web Design and Product Design.";
+
+    } else if (scores.data >= scores.tech &&
+               scores.data >= scores.design &&
+               scores.data >= scores.security) {
+
+        career = "📊 Data & Analytics";
+        description =
+        "Your answers show interest in numbers, analysis and problem solving. You can explore Data Analyst, Business Analyst and Data Science careers.";
+
+    } else {
+
+        career = "🔐 Cyber Security";
+        description =
+        "Your answers show interest in logical thinking and security. You can explore Cyber Security, Ethical Hacking and Security Analyst careers.";
+    }
+
+    document.getElementById("resultTitle").innerText =
+        "Your Suggested Career: " + career;
+
+    document.getElementById("resultText").innerText =
+        description;
+
+    document.getElementById("result").style.display = "block";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
