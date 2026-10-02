@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CAREERPATH | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at top left, #e8dcff, transparent 40%),
+                radial-gradient(circle at bottom right, #ffd8ed, transparent 40%),
+                #f7f5ff;
+        }
+
+        .login-container {
+            width: 380px;
+            padding: 40px;
+
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+
+            box-shadow: 0 20px 50px rgba(80, 60, 150, 0.15);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #7046e8;
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: #e85ca8;
+        }
+
+        .welcome {
+            text-align: center;
+            color: #77718b;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #342d52;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #4b4663;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+
+            border: 1px solid #ddd6f5;
+            border-radius: 12px;
+            outline: none;
+
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #7146e8;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 25px;
+
+            background: linear-gradient(135deg, #7146e8, #d34fa5);
+
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #77718b;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: #7146e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+
+            color: #7146e8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">
+            CAREER<span>PATH</span>
+        </div>
+
+        <p class="welcome">
+            Smart Career Guidance & Opportunity Portal
+        </p>
+
+        <h2>Welcome Back 👋</h2>
+
+        <form>
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button class="login-btn" type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p class="register">
+            Don't have an account?
+            <a href="register.html">Create Account</a>
+        </p>
+
+        <a class="back" href="index.html">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>
