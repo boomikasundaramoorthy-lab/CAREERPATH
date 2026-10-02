@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - CAREERPATH</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.20);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #f3d7ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .heading h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #ead8f5;
+            font-size: 17px;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.17);
+        }
+
+        .icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .course-card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #eadcf2;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #f1d8ff;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(216, 170, 255, 0.22);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+        }
+
+        .skill-box {
+            margin-top: 45px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .skill-box p {
+            color: #eadcf2;
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+        }
+
+        @media (max-width: 900px) {
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html">Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Courses & Skill Development 📚</h1>
+            <p>Learn new skills and prepare yourself for your dream career.</p>
+        </div>
+
+        <div class="course-grid">
+
+            <div class="course-card">
+                <div class="icon">🌐</div>
+                <h2>Web Development</h2>
+                <p>Learn how to build modern and responsive websites.</p>
+
+                <div class="details">
+                    <span>Beginner</span>
+                    <span>8 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🐍</div>
+                <h2>Python Programming</h2>
+                <p>Build programming fundamentals and useful Python applications.</p>
+
+                <div class="details">
+                    <span>Beginner</span>
+                    <span>6 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Logic</span>
+                    <span class="tag">Projects</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">📊</div>
+                <h2>Data Science</h2>
+                <p>Learn data analysis, visualization and basic data science concepts.</p>
+
+                <div class="details">
+                    <span>Intermediate</span>
+                    <span>10 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Data</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🤖</div>
+                <h2>AI & Machine Learning</h2>
+                <p>Explore artificial intelligence and machine learning fundamentals.</p>
+
+                <div class="details">
+                    <span>Intermediate</span>
+                    <span>12 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">ML</span>
+                    <span class="tag">Python</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🎨</div>
+                <h2>UI/UX Design</h2>
+                <p>Learn user interface and user experience design principles.</p>
+
+                <div class="details">
+                    <span>Beginner</span>
+                    <span>6 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Figma</span>
+                    <span class="tag">UI Design</span>
+                    <span class="tag">UX</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+            <div class="course-card">
+                <div class="icon">🔐</div>
+                <h2>Cyber Security</h2>
+                <p>Understand security fundamentals and safe computing practices.</p>
+
+                <div class="details">
+                    <span>Beginner</span>
+                    <span>8 Weeks</span>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">Security</span>
+                    <span class="tag">Networks</span>
+                    <span class="tag">Cyber</span>
+                </div>
+
+                <a href="#" class="btn">View Course</a>
+            </div>
+
+        </div>
+
+        <div class="skill-box">
+            <h2>🚀 Build Your Skills</h2>
+            <p>Choose a course, improve your skills and move closer to your career goal.</p>
+            <a href="profile.html" class="home-btn">Update My Profile</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
