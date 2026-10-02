@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREERPATH | Jobs & Internships</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad, #d98cff);
+            color: white;
+            padding: 25px;
+        }
+
+        .navbar {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .home {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 45px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #ead7ff;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .job-card {
+            padding: 25px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            transition: 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255,255,255,0.17);
+        }
+
+        .job-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #7b2cbf, #c471ed);
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .job-card h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .company {
+            color: #f0d7ff;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #ead7ff;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 6px 11px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.13);
+            color: #f3dfff;
+            font-size: 11px;
+        }
+
+        .job-info {
+            display: flex;
+            justify-content: space-between;
+            color: #f4dcff;
+            font-size: 12px;
+            margin-bottom: 18px;
+        }
+
+        .apply {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 13px;
+            background: linear-gradient(90deg, #c471ed, #f78fb3);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .internship {
+            margin-top: 35px;
+            padding: 28px;
+            border-radius: 25px;
+            text-align: center;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .internship h2 {
+            margin-bottom: 10px;
+        }
+
+        .internship p {
+            color: #ead7ff;
+            margin-bottom: 18px;
+        }
+
+        @media (max-width: 850px) {
+            .job-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            body {
+                padding: 15px;
+            }
+
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CAREERPATH</div>
+        <a href="index.html" class="home">← Home</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="heading">
+            <h1>Jobs & Internships 💼</h1>
+            <p>Discover opportunities that match your skills and career goals.</p>
+        </div>
+
+        <div class="job-grid">
+
+            <div class="job-card">
+                <div class="job-icon">💻</div>
+                <h2>Junior Web Developer</h2>
+                <div class="company">Tech Solutions</div>
+
+                <p class="description">
+                    Build responsive websites and work with modern
+                    web technologies.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Chennai</span>
+                    <span>💼 Full Time</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+
+            <div class="job-card">
+                <div class="job-icon">🐍</div>
+                <h2>Python Developer Intern</h2>
+                <div class="company">Digital Innovations</div>
+
+                <p class="description">
+                    Learn Python development and work on real-world
+                    software projects.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Django</span>
+                    <span class="tag">SQL</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Remote</span>
+                    <span>🎓 Internship</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+
+            <div class="job-card">
+                <div class="job-icon">📊</div>
+                <h2>Data Analyst Intern</h2>
+                <div class="company">DataWorks</div>
+
+                <p class="description">
+                    Analyze data and create useful reports and
+                    business insights.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Excel</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Power BI</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Bangalore</span>
+                    <span>🎓 Internship</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+
+            <div class="job-card">
+                <div class="job-icon">🎨</div>
+                <h2>UI/UX Design Intern</h2>
+                <div class="company">Creative Labs</div>
+
+                <p class="description">
+                    Design attractive and user-friendly digital
+                    experiences.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Figma</span>
+                    <span class="tag">UI Design</span>
+                    <span class="tag">UX</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Remote</span>
+                    <span>🎓 Internship</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+
+            <div class="job-card">
+                <div class="job-icon">🔐</div>
+                <h2>Cyber Security Intern</h2>
+                <div class="company">SecureNet</div>
+
+                <p class="description">
+                    Learn security concepts and assist with
+                    protecting digital systems.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Networking</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Security</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Hyderabad</span>
+                    <span>🎓 Internship</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+
+            <div class="job-card">
+                <div class="job-icon">🤖</div>
+                <h2>AI/ML Intern</h2>
+                <div class="company">Future AI Labs</div>
+
+                <p class="description">
+                    Explore artificial intelligence and machine
+                    learning applications.
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">AI</span>
+                    <span class="tag">ML</span>
+                </div>
+
+                <div class="job-info">
+                    <span>📍 Chennai</span>
+                    <span>🎓 Internship</span>
+                </div>
+
+                <a href="#" class="apply">View Opportunity</a>
+            </div>
+
+        </div>
+
+        <div class="internship">
+            <h2>✨ Find Your Next Opportunity</h2>
+            <p>
+                Explore jobs and internships based on your skills,
+                interests and career path.
+            </p>
+            <a href="profile.html" class="apply">Update My Profile</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
