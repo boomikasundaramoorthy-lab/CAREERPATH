@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Simulation Lab | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+    radial-gradient(circle at top left,#8e44ad 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#f78fb3 0%,transparent 30%),
+    linear-gradient(135deg,#12001f,#30004f,#5b217d);
+}
+
+.navbar{
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,.2);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    color:#f5d9ff;
+}
+
+.home{
+    color:white;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:25px;
+    background:rgba(255,255,255,.12);
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#f7b6ef;
+}
+
+.hero p{
+    color:#dfcfea;
+    line-height:1.6;
+}
+
+.panel{
+    padding:28px;
+    border-radius:25px;
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#eadcf2;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.12);
+    color:white;
+}
+
+select option{
+    color:#222;
+}
+
+.simulate{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.result{
+    display:none;
+    margin-top:28px;
+}
+
+.career-header{
+    padding:25px;
+    border-radius:22px;
+    background:rgba(255,255,255,.10);
+    margin-bottom:20px;
+}
+
+.career-header h2{
+    margin-bottom:10px;
+    font-size:28px;
+}
+
+.career-header p{
+    color:#dfd1e7;
+    line-height:1.7;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.card{
+    padding:23px;
+    border-radius:20px;
+    background:rgba(255,255,255,.10);
+}
+
+.card h3{
+    margin-bottom:14px;
+}
+
+.card p{
+    color:#dfd2e7;
+    line-height:1.7;
+}
+
+.card ul{
+    padding-left:20px;
+    color:#e4d7eb;
+    line-height:2;
+}
+
+.skill-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.skill{
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(196,113,237,.25);
+    color:#f4dcff;
+    font-size:13px;
+}
+
+.path{
+    margin-top:20px;
+}
+
+.path-step{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:13px;
+    background:rgba(255,255,255,.07);
+}
+
+.circle{
+    min-width:34px;
+    height:34px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#c471ed;
+    font-weight:bold;
+}
+
+.bar-box{
+    margin-top:15px;
+}
+
+.bar-label{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.bar{
+    width:100%;
+    height:10px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.badge{
+    display:inline-block;
+    margin-top:12px;
+    padding:7px 13px;
+    border-radius:20px;
+    background:rgba(196,113,237,.2);
+    color:#f4d8ff;
+}
+
+.reset{
+    margin-top:20px;
+    text-align:center;
+}
+
+.reset button{
+    padding:11px 20px;
+    border:none;
+    border-radius:22px;
+    color:white;
+    cursor:pointer;
+    background:rgba(255,255,255,.13);
+}
+
+@media(max-width:700px){
+    .hero h1{
+        font-size:30px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .panel{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">CAREERPATH</div>
+
+    <a href="index.html" class="home">Home</a>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>
+            🚀 <span>Career Simulation Lab</span>
+        </h1>
+
+        <p>
+            Explore a career before you choose it.
+            Understand the skills, roles and preparation journey.
+        </p>
+
+    </div>
+
+
+    <div class="panel">
+
+        <label>🎯 Select Your Career</label>
+
+        <select id="career">
+
+            <option value="software">
+                Software Developer
+            </option>
+
+            <option value="data">
+                Data Analyst
+            </option>
+
+            <option value="aiml">
+                AI / ML Engineer
+            </option>
+
+            <option value="uiux">
+                UI/UX Designer
+            </option>
+
+            <option value="cyber">
+                Cyber Security Analyst
+            </option>
+
+        </select>
+
+
+        <button
+            class="simulate"
+            onclick="simulateCareer()">
+
+            🚀 Simulate My Career
+
+        </button>
+
+    </div>
+
+
+    <div class="result" id="result">
+
+        <div class="career-header">
+
+            <h2 id="careerName">
+                Software Developer
+            </h2>
+
+            <p id="careerDescription"></p>
+
+            <span class="badge" id="careerBadge">
+                Career Simulation
+            </span>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <div class="card">
+
+                <h3>🧠 Core Skills</h3>
+
+                <div
+                    class="skill-list"
+                    id="skills">
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>💼 Possible Job Roles</h3>
+
+                <ul id="jobs"></ul>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>📚 What You Need To Learn</h3>
+
+                <ul id="learning"></ul>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>📈 Career Growth</h3>
+
+                <p id="growth"></p>
+
+                <div class="bar-box">
+
+                    <div class="bar-label">
+
+                        <span>
+                            Growth Path
+                        </span>
+
+                        <span>
+                            85%
+                        </span>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <div
+                            class="fill"
+                            id="growthBar"
+                            style="width:85%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card path">
+
+            <h3>
+                🗺️ Your Career Journey
+            </h3>
+
+            <div id="journey"></div>
+
+        </div>
+
+
+        <div class="reset">
+
+            <button onclick="resetSimulation()">
+                🔄 Explore Another Career
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const careers = {
+
+    software:{
+        name:"Software Developer",
+
+        description:
+        "Software Developers design, build, test and maintain applications and software systems. This career can lead to web, mobile, backend and full-stack development roles.",
+
+        skills:[
+            "Programming",
+            "JavaScript",
+            "Python",
+            "SQL",
+            "Git & GitHub",
+            "Problem Solving"
+        ],
+
+        jobs:[
+            "Junior Software Developer",
+            "Frontend Developer",
+            "Backend Developer",
+            "Full Stack Developer"
+        ],
+
+        learning:[
+            "Programming fundamentals",
+            "Web development",
+            "Database concepts",
+            "Git and GitHub",
+            "API development"
+        ],
+
+        growth:
+        "Start as an intern or junior developer and progress toward developer, senior developer and technical leadership roles.",
+
+        growthScore:88
+    },
+
+
+    data:{
+        name:"Data Analyst",
+
+        description:
+        "Data Analysts transform raw data into useful insights that help organizations make informed decisions.",
+
+        skills:[
+            "Excel",
+            "SQL",
+            "Python",
+            "Statistics",
+            "Power BI",
+            "Data Visualization"
+        ],
+
+        jobs:[
+            "Junior Data Analyst",
+            "Business Analyst",
+            "Reporting Analyst",
+            "Data Associate"
+        ],
+
+        learning:[
+            "Excel and spreadsheets",
+            "SQL",
+            "Statistics",
+            "Power BI",
+            "Data visualization"
+        ],
+
+        growth:
+        "Build experience through analysis projects and progress toward senior analyst, business intelligence and analytics roles.",
+
+        growthScore:84
+    },
+
+
+    aiml:{
+        name:"AI / ML Engineer",
+
+        description:
+        "AI and Machine Learning professionals develop intelligent systems that learn from data and solve complex problems.",
+
+        skills:[
+            "Python",
+            "Statistics",
+            "Machine Learning",
+            "Data Science",
+            "SQL",
+            "Model Building"
+        ],
+
+        jobs:[
+            "AI/ML Intern",
+            "Machine Learning Engineer",
+            "AI Developer",
+            "Data Science Associate"
+        ],
+
+        learning:[
+            "Python programming",
+            "Statistics",
+            "Machine learning",
+            "Data preprocessing",
+            "AI projects"
+        ],
+
+        growth:
+        "Develop from beginner projects to ML internships, engineering roles and specialized AI positions.",
+
+        growthScore:91
+    },
+
+
+    uiux:{
+        name:"UI/UX Designer",
+
+        description:
+        "UI/UX Designers create user-friendly digital experiences by combining visual design, research and usability principles.",
+
+        skills:[
+            "Figma",
+            "UI Design",
+            "UX Research",
+            "Typography",
+            "Prototyping",
+            "Design Thinking"
+        ],
+
+        jobs:[
+            "UI Designer",
+            "UX Designer",
+            "Product Designer",
+            "UI/UX Intern"
+        ],
+
+        learning:[
+            "Figma",
+            "Design principles",
+            "UX research",
+            "Wireframing",
+            "Prototyping"
+        ],
+
+        growth:
+        "Build a strong portfolio, gain project experience and progress from junior design roles to product and senior design positions.",
+
+        growthScore:82
+    },
+
+
+    cyber:{
+        name:"Cyber Security Analyst",
+
+        description:
+        "Cyber Security professionals protect systems, networks and data from security threats and unauthorized access.",
+
+        skills:[
+            "Networking",
+            "Linux",
+            "Python",
+            "Cyber Security",
+            "Security Tools",
+            "Problem Solving"
+        ],
+
+        jobs:[
+            "Cyber Security Intern",
+            "SOC Analyst",
+            "Security Analyst",
+            "Cyber Security Associate"
+        ],
+
+        learning:[
+            "Computer networking",
+            "Linux",
+            "Security fundamentals",
+            "Threat analysis",
+            "Security tools"
+        ],
+
+        growth:
+        "Start with security fundamentals and internships, then progress into SOC, security analyst and specialized cyber security roles.",
+
+        growthScore:89
+    }
+
+};
+
+
+function simulateCareer(){
+
+    const selected =
+        document.getElementById("career").value;
+
+    const data =
+        careers[selected];
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("careerName").innerText =
+        "🚀 " + data.name;
+
+
+    document.getElementById("careerDescription").innerText =
+        data.description;
+
+
+    document.getElementById("growth").innerText =
+        data.growth;
+
+
+    document.getElementById("growthBar").style.width =
+        data.growthScore + "%";
+
+
+    /* SKILLS */
+
+    const skills =
+        document.getElementById("skills");
+
+    skills.innerHTML = "";
+
+    data.skills.forEach(skill => {
+
+        const span =
+            document.createElement("span");
+
+        span.className = "skill";
+
+        span.innerText = skill;
+
+        skills.appendChild(span);
+
+    });
+
+
+    /* JOBS */
+
+    const jobs =
+        document.getElementById("jobs");
+
+    jobs.innerHTML = "";
+
+    data.jobs.forEach(job => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = job;
+
+        jobs.appendChild(li);
+
+    });
+
+
+    /* LEARNING */
+
+    const learning =
+        document.getElementById("learning");
+
+    learning.innerHTML = "";
+
+    data.learning.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = item;
+
+        learning.appendChild(li);
+
+    });
+
+
+    /* JOURNEY */
+
+    const journey =
+        document.getElementById("journey");
+
+    journey.innerHTML = "";
+
+    const steps = [
+
+        "Understand the career fundamentals",
+
+        "Learn the core technical skills",
+
+        "Build real-world projects",
+
+        "Create a professional resume and portfolio",
+
+        "Practice interviews and assessments",
+
+        "Apply for internships and entry-level roles"
+
+    ];
+
+
+    steps.forEach((step,index)=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className = "path-step";
+
+        div.innerHTML =
+            "<div class='circle'>" +
+            (index + 1) +
+            "</div>" +
+            "<div>" +
+            step +
+            "</div>";
+
+        journey.appendChild(div);
+
+    });
+
+
+    document.getElementById("result").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function resetSimulation(){
+
+    document.getElementById("result").style.display =
+        "none";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
