@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Portfolio Builder | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin:14px 0 8px;
+    font-weight:bold;
+}
+
+input,textarea{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.portfolio{
+    background:linear-gradient(145deg,#25063e,#542071);
+    border-radius:20px;
+    padding:30px;
+    min-height:600px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.portfolio-header{
+    text-align:center;
+    padding-bottom:25px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.avatar{
+    width:85px;
+    height:85px;
+    margin:auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#c471ed,#f78fb3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.portfolio h2{
+    color:#ffd6f6;
+    margin-bottom:8px;
+}
+
+.portfolio-section{
+    margin-top:25px;
+}
+
+.portfolio-section h3{
+    color:#ffd6f6;
+    margin-bottom:10px;
+}
+
+.portfolio-section p{
+    color:#eee;
+    line-height:1.6;
+    white-space:pre-line;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tag{
+    background:rgba(196,113,237,.3);
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.project{
+    padding:12px;
+    margin-top:8px;
+    background:rgba(255,255,255,.08);
+    border-radius:10px;
+}
+
+.success{
+    text-align:center;
+    color:#ffd6f6;
+    margin-top:15px;
+    display:none;
+}
+
+@media(max-width:800px){
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🌟 Career Portfolio Builder</h1>
+        <p>Create your professional career portfolio in seconds.</p>
+    </div>
+
+    <div class="layout">
+
+        <!-- FORM -->
+
+        <div class="card">
+
+            <h2>📝 Enter Your Details</h2>
+
+            <label>👤 Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+            >
+
+            <label>💼 Career / Job Title</label>
+            <input
+                type="text"
+                id="title"
+                placeholder="Example: Software Developer"
+            >
+
+            <label>📧 Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+            >
+
+            <label>🎯 About Me</label>
+            <textarea
+                id="about"
+                placeholder="Write a short introduction about yourself..."
+            ></textarea>
+
+            <label>🧠 Skills</label>
+            <input
+                type="text"
+                id="skills"
+                placeholder="Python, HTML, CSS, SQL"
+            >
+
+            <label>🚀 Projects</label>
+            <textarea
+                id="projects"
+                placeholder="Project 1&#10;Project 2&#10;Project 3"
+            ></textarea>
+
+            <label>🏆 Certifications</label>
+            <textarea
+                id="certifications"
+                placeholder="Certification 1&#10;Certification 2"
+            ></textarea>
+
+            <button onclick="generatePortfolio()">
+                ✨ Generate Portfolio
+            </button>
+
+            <div class="success" id="success">
+                ✓ Portfolio Updated Successfully!
+            </div>
+
+        </div>
+
+
+        <!-- PORTFOLIO PREVIEW -->
+
+        <div class="portfolio">
+
+            <div class="portfolio-header">
+
+                <div class="avatar">👩‍💻</div>
+
+                <h2 id="previewName">
+                    Your Name
+                </h2>
+
+                <p id="previewTitle">
+                    Your Career Goal
+                </p>
+
+                <p
+                    id="previewEmail"
+                    style="margin-top:8px;color:#ddd;"
+                >
+                    your@email.com
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-section">
+
+                <h3>🌸 About Me</h3>
+
+                <p id="previewAbout">
+                    Your introduction will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="portfolio-section">
+
+                <h3>🧠 Skills</h3>
+
+                <div
+                    class="tags"
+                    id="previewSkills"
+                >
+                    <span class="tag">Your Skills</span>
+                </div>
+
+            </div>
+
+
+            <div class="portfolio-section">
+
+                <h3>🚀 Projects</h3>
+
+                <div id="previewProjects">
+                    <div class="project">
+                        Your projects will appear here.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="portfolio-section">
+
+                <h3>🏆 Certifications</h3>
+
+                <div id="previewCertifications">
+                    <div class="project">
+                        Your certifications will appear here.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generatePortfolio(){
+
+    const name =
+        document.getElementById("name").value;
+
+    const title =
+        document.getElementById("title").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const about =
+        document.getElementById("about").value;
+
+    const skills =
+        document.getElementById("skills").value;
+
+    const projects =
+        document.getElementById("projects").value;
+
+    const certifications =
+        document.getElementById("certifications").value;
+
+
+    document.getElementById("previewName")
+        .textContent =
+        name || "Your Name";
+
+    document.getElementById("previewTitle")
+        .textContent =
+        title || "Your Career Goal";
+
+    document.getElementById("previewEmail")
+        .textContent =
+        email || "your@email.com";
+
+    document.getElementById("previewAbout")
+        .textContent =
+        about || "Your introduction will appear here.";
+
+
+    const skillBox =
+        document.getElementById("previewSkills");
+
+    skillBox.innerHTML = "";
+
+    if(skills.trim() !== ""){
+
+        skills.split(",").forEach(skill => {
+
+            if(skill.trim() !== ""){
+
+                skillBox.innerHTML +=
+                `<span class="tag">${skill.trim()}</span>`;
+
+            }
+
+        });
+
+    }
+    else{
+
+        skillBox.innerHTML =
+        `<span class="tag">Your Skills</span>`;
+
+    }
+
+
+    const projectBox =
+        document.getElementById("previewProjects");
+
+    projectBox.innerHTML = "";
+
+    if(projects.trim() !== ""){
+
+        projects.split("\n").forEach(project => {
+
+            if(project.trim() !== ""){
+
+                projectBox.innerHTML +=
+                `<div class="project">🚀 ${project.trim()}</div>`;
+
+            }
+
+        });
+
+    }
+    else{
+
+        projectBox.innerHTML =
+        `<div class="project">Your projects will appear here.</div>`;
+
+    }
+
+
+    const certificateBox =
+        document.getElementById("previewCertifications");
+
+    certificateBox.innerHTML = "";
+
+    if(certifications.trim() !== ""){
+
+        certifications.split("\n").forEach(cert => {
+
+            if(cert.trim() !== ""){
+
+                certificateBox.innerHTML +=
+                `<div class="project">🏆 ${cert.trim()}</div>`;
+
+            }
+
+        });
+
+    }
+    else{
+
+        certificateBox.innerHTML =
+        `<div class="project">Your certifications will appear here.</div>`;
+
+    }
+
+
+    const success =
+        document.getElementById("success");
+
+    success.style.display = "block";
+
+    setTimeout(() => {
+        success.style.display = "none";
+    }, 2500);
+
+}
+
+</script>
+
+</body>
+</html>
