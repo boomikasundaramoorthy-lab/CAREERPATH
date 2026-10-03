@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Eligibility Analyzer | CAREERPATH</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:60px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(0,0,0,.18);
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#eadcff;
+    line-height:1.6;
+}
+
+.card{
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:22px;
+    padding:28px;
+    backdrop-filter:blur(15px);
+    margin-bottom:25px;
+}
+
+.card h2{
+    margin-bottom:18px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    color:#35104f;
+    outline:none;
+}
+
+.analyze-btn{
+    border:none;
+    border-radius:25px;
+    padding:14px 27px;
+    margin-top:18px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    display:none;
+}
+
+.score-section{
+    text-align:center;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+}
+
+.score{
+    font-size:58px;
+    font-weight:bold;
+    margin:12px;
+}
+
+.status{
+    font-size:17px;
+    color:#f8d9ff;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.summary-box{
+    padding:20px;
+    text-align:center;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+}
+
+.summary-box strong{
+    display:block;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.skill-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.skill-card{
+    padding:18px;
+    background:rgba(255,255,255,.08);
+    border-radius:15px;
+}
+
+.skill-card h3{
+    margin-bottom:10px;
+}
+
+.skill-status{
+    font-size:13px;
+    color:#eadcff;
+}
+
+.progress{
+    height:9px;
+    background:rgba(255,255,255,.13);
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    margin:5px;
+    font-size:13px;
+}
+
+.recommendation{
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+    line-height:1.7;
+    color:#eadcff;
+}
+
+.next-steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.step{
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+}
+
+.step h3{
+    margin-bottom:10px;
+}
+
+.step p{
+    color:#eadcff;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.apply-btn{
+    border:none;
+    border-radius:25px;
+    padding:13px 25px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+@media(max-width:750px){
+
+    nav{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav a{
+        margin:0 7px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .summary,
+    .skill-grid,
+    .next-steps{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+CAREERPATH
+</div>
+
+<div>
+<a href="index.html">Home</a>
+<a href="jobs.html">Jobs</a>
+<a href="career-dashboard.html">Dashboard</a>
+</div>
+
+</nav>
+
+
+<div class="container">
+
+<div class="hero">
+
+<h1>💼 Job Eligibility Analyzer</h1>
+
+<p>
+Analyze your profile against job requirements and discover
+your eligibility, skill gaps and preparation needs.
+</p>
+
+</div>
+
+
+<!-- JOB SELECTION -->
+
+<div class="card" id="selection">
+
+<h2>🎯 Select Job Opportunity</h2>
+
+<select id="job">
+
+<option value="web">
+Junior Web Developer
+</option>
+
+<option value="python">
+Python Developer Intern
+</option>
+
+<option value="data">
+Data Analyst Intern
+</option>
+
+<option value="uiux">
+UI/UX Design Intern
+</option>
+
+<option value="cyber">
+Cyber Security Intern
+</option>
+
+<option value="aiml">
+AI / ML Intern
+</option>
+
+</select>
+
+<br>
+
+<button class="analyze-btn" onclick="analyzeJob()">
+
+🔍 Analyze My Eligibility
+
+</button>
+
+</div>
+
+
+<!-- RESULT -->
+
+<div class="result" id="result">
+
+
+<div class="card">
+
+<div class="score-section">
+
+<div>
+Overall Eligibility
+</div>
+
+<div class="score" id="score">
+0%
+</div>
+
+<div class="status" id="status">
+</div>
+
+</div>
+
+
+<div class="summary">
+
+<div class="summary-box">
+
+<strong id="matched">
+0
+</strong>
+
+Matched Skills
+
+</div>
+
+<div class="summary-box">
+
+<strong id="missing">
+0
+</strong>
+
+Missing Skills
+
+</div>
+
+<div class="summary-box">
+
+<strong id="readiness">
+0%
+</strong>
+
+Application Readiness
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SKILL ANALYSIS -->
+
+<div class="card">
+
+<h2>🛠️ Skill Requirement Analysis</h2>
+
+<div class="skill-grid" id="skills">
+
+</div>
+
+</div>
+
+
+<!-- MISSING SKILLS -->
+
+<div class="card">
+
+<h2>⚠️ Skills to Improve</h2>
+
+<div id="missingSkills">
+
+</div>
+
+</div>
+
+
+<!-- RECOMMENDATION -->
+
+<div class="card">
+
+<h2>💡 Personalized Recommendation</h2>
+
+<div class="recommendation" id="recommendation">
+
+</div>
+
+</div>
+
+
+<!-- PREPARATION -->
+
+<div class="card">
+
+<h2>🗺️ Before You Apply</h2>
+
+<div class="next-steps">
+
+<div class="step">
+
+<h3>1️⃣ Improve Skills</h3>
+
+<p>
+Work on the missing skills identified
+in the eligibility analysis.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h3>2️⃣ Build Project</h3>
+
+<p>
+Create a practical project that demonstrates
+your required technical skills.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h3>3️⃣ Prepare Resume</h3>
+
+<p>
+Update your resume with relevant skills,
+projects and career achievements.
+</p>
+
+</div>
+
+</div>
+
+<button class="apply-btn" onclick="goToApplications()">
+
+📋 Go to Application Tracker
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+
+const jobs={
+
+web:{
+name:"Junior Web Developer",
+
+skills:[
+"HTML",
+"CSS",
+"JavaScript",
+"Git",
+"Responsive Design"
+]
+
+},
+
+python:{
+name:"Python Developer Intern",
+
+skills:[
+"Python",
+"SQL",
+"Git",
+"Problem Solving",
+"APIs"
+]
+
+},
+
+data:{
+name:"Data Analyst Intern",
+
+skills:[
+"Excel",
+"SQL",
+"Python",
+"Statistics",
+"Power BI"
+]
+
+},
+
+uiux:{
+name:"UI/UX Design Intern",
+
+skills:[
+"Figma",
+"Wireframing",
+"UX Research",
+"Prototyping",
+"UI Design"
+]
+
+},
+
+cyber:{
+name:"Cyber Security Intern",
+
+skills:[
+"Networking",
+"Linux",
+"Cyber Security",
+"Python",
+"Security Tools"
+]
+
+},
+
+aiml:{
+name:"AI / ML Intern",
+
+skills:[
+"Python",
+"Statistics",
+"Machine Learning",
+"SQL",
+"Data Handling"
+]
+
+}
+
+};
+
+
+/*
+Demo student skill profile.
+Later backend will load these values
+from the student's actual profile.
+*/
+
+const studentSkills=[
+
+"HTML",
+"CSS",
+"Python",
+"SQL",
+"Git",
+"Problem Solving",
+"Communication"
+
+];
+
+
+function analyzeJob(){
+
+const selectedJob=
+document.getElementById("job").value;
+
+const job=
+jobs[selectedJob];
+
+let matched=0;
+
+let missingSkills=[];
+
+let html="";
+
+
+job.skills.forEach(skill=>{
+
+const hasSkill=
+studentSkills.includes(skill);
+
+if(hasSkill){
+
+matched++;
+
+html+=`
+
+<div class="skill-card">
+
+<h3>✅ ${skill}</h3>
+
+<div class="skill-status">
+Skill available in student profile
+</div>
+
+<div class="progress">
+<div
+class="progress-fill"
+style="width:100%">
+</div>
+</div>
+
+</div>
+
+`;
+
+}else{
+
+missingSkills.push(skill);
+
+html+=`
+
+<div class="skill-card">
+
+<h3>⚠️ ${skill}</h3>
+
+<div class="skill-status">
+Skill needs improvement
+</div>
+
+<div class="progress">
+<div
+class="progress-fill"
+style="width:30%">
+</div>
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+
+const eligibility=
+Math.round(
+(matched/job.skills.length)*100
+);
+
+
+const readiness=
+Math.min(
+100,
+eligibility+10
+);
+
+
+document.getElementById("score")
+.innerText=eligibility+"%";
+
+
+let status="";
+
+
+if(eligibility>=80){
+
+status=
+"🟢 Strong Match — Ready to Apply";
+
+}
+else if(eligibility>=60){
+
+status=
+"🟡 Moderate Match — Improve Some Skills";
+
+}
+else{
+
+status=
+"🔴 Low Match — Preparation Recommended";
+
+}
+
+
+document.getElementById("status")
+.innerText=status;
+
+
+document.getElementById("matched")
+.innerText=matched;
+
+
+document.getElementById("missing")
+.innerText=
+missingSkills.length;
+
+
+document.getElementById("readiness")
+.innerText=
+readiness+"%";
+
+
+document.getElementById("skills")
+.innerHTML=html;
+
+
+let missingHTML="";
+
+
+if(missingSkills.length===0){
+
+missingHTML=
+`<span class="badge">
+🎉 No major missing skills
+</span>`;
+
+}else{
+
+missingSkills.forEach(skill=>{
+
+missingHTML+=
+`<span class="badge">
+⚠️ ${skill}
+</span>`;
+
+});
+
+}
+
+
+document.getElementById("missingSkills")
+.innerHTML=
+missingHTML;
+
+
+let recommendation="";
+
+
+if(eligibility>=80){
+
+recommendation=
+`Your current profile matches most of the requirements
+for <b>${job.name}</b>. You can prepare your resume,
+practice interview questions and consider applying.`;
+
+}
+else if(eligibility>=60){
+
+recommendation=
+`You have a reasonable foundation for
+<b>${job.name}</b>. Focus on the missing skills,
+complete at least one practical project and then
+prepare your application.`;
+
+}
+else{
+
+recommendation=
+`Your current profile needs more preparation before
+applying for <b>${job.name}</b>. Focus on the identified
+skill gaps, build practical experience and strengthen
+your resume.`;
+
+}
+
+
+document.getElementById("recommendation")
+.innerHTML=recommendation;
+
+
+document.getElementById("selection")
+.style.display="none";
+
+
+document.getElementById("result")
+.style.display="block";
+
+
+document.getElementById("result")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function goToApplications(){
+
+window.location.href=
+"job-application-tracker.html";
+
+}
+
+
+</script>
+
+</body>
+</html>
