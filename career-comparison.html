@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Comparison | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(0,0,0,0.18);
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:22px;
+    font-size:15px;
+}
+
+.container{
+    width:90%;
+    max-width:1150px;
+    margin:40px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+    font-size:16px;
+}
+
+.selection{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.box{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:20px;
+    padding:25px;
+    backdrop-filter:blur(15px);
+}
+
+.box h3{
+    margin-bottom:12px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#35104f;
+    font-size:15px;
+    outline:none;
+}
+
+.compare-btn{
+    display:block;
+    margin:10px auto 35px;
+    padding:14px 28px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    display:none;
+}
+
+.result h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.career-card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:20px;
+    padding:25px;
+    backdrop-filter:blur(15px);
+}
+
+.career-card h2{
+    text-align:left;
+    margin-bottom:20px;
+    color:#f8d9ff;
+}
+
+.item{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+}
+
+.item:last-child{
+    border-bottom:none;
+}
+
+.label{
+    font-size:13px;
+    color:#dcbcff;
+    margin-bottom:6px;
+}
+
+.value{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:7px;
+}
+
+.tag{
+    background:rgba(255,255,255,0.15);
+    padding:6px 10px;
+    border-radius:15px;
+    font-size:12px;
+}
+
+.analysis{
+    margin-top:25px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:20px;
+    padding:25px;
+    backdrop-filter:blur(15px);
+}
+
+.analysis h2{
+    margin-bottom:15px;
+}
+
+.analysis p{
+    color:#eadcff;
+    line-height:1.7;
+}
+
+.metric{
+    margin-top:18px;
+}
+
+.metric-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+    font-size:14px;
+}
+
+.bar{
+    height:10px;
+    background:rgba(255,255,255,0.15);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    border-radius:10px;
+}
+
+.path{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.step{
+    background:rgba(255,255,255,0.09);
+    border-radius:15px;
+    padding:18px 10px;
+    text-align:center;
+}
+
+.step span{
+    display:block;
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.step p{
+    font-size:12px;
+    color:#eadcff;
+}
+
+.note{
+    margin-top:20px;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.08);
+    color:#eadcff;
+    font-size:13px;
+}
+
+@media(max-width:750px){
+    .selection,
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .path{
+        grid-template-columns:1fr 1fr;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav a{
+        margin:0 7px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="career-dashboard.html">Dashboard</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>⚖️ Career Comparison Center</h1>
+        <p>Compare two career paths and understand which skills, learning areas and opportunities each path requires.</p>
+    </div>
+
+    <div class="selection">
+
+        <div class="box">
+            <h3>🎯 Career Path 1</h3>
+
+            <select id="career1">
+                <option value="software">Software Developer</option>
+                <option value="data">Data Analyst</option>
+                <option value="aiml">AI / ML Engineer</option>
+                <option value="uiux">UI/UX Designer</option>
+                <option value="cyber">Cyber Security Analyst</option>
+            </select>
+        </div>
+
+        <div class="box">
+            <h3>🎯 Career Path 2</h3>
+
+            <select id="career2">
+                <option value="data">Data Analyst</option>
+                <option value="software">Software Developer</option>
+                <option value="aiml">AI / ML Engineer</option>
+                <option value="uiux">UI/UX Designer</option>
+                <option value="cyber">Cyber Security Analyst</option>
+            </select>
+        </div>
+
+    </div>
+
+    <button class="compare-btn" onclick="compareCareers()">
+        🔍 Compare Careers
+    </button>
+
+    <div class="result" id="result">
+
+        <h2>📊 Career Comparison</h2>
+
+        <div class="compare-grid">
+
+            <div class="career-card">
+
+                <h2 id="name1"></h2>
+
+                <div class="item">
+                    <div class="label">💼 Job Roles</div>
+                    <div class="value" id="roles1"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">📚 Learning Time</div>
+                    <div class="value" id="time1"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🎓 Difficulty</div>
+                    <div class="value" id="difficulty1"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🚀 Growth</div>
+                    <div class="value" id="growth1"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🛠️ Core Skills</div>
+                    <div class="tags" id="skills1"></div>
+                </div>
+
+            </div>
+
+            <div class="career-card">
+
+                <h2 id="name2"></h2>
+
+                <div class="item">
+                    <div class="label">💼 Job Roles</div>
+                    <div class="value" id="roles2"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">📚 Learning Time</div>
+                    <div class="value" id="time2"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🎓 Difficulty</div>
+                    <div class="value" id="difficulty2"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🚀 Growth</div>
+                    <div class="value" id="growth2"></div>
+                </div>
+
+                <div class="item">
+                    <div class="label">🛠️ Core Skills</div>
+                    <div class="tags" id="skills2"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="analysis">
+
+            <h2>🧠 Career Decision Analysis</h2>
+
+            <p id="analysisText"></p>
+
+            <div class="metric">
+                <div class="metric-top">
+                    <span id="metricName1"></span>
+                    <span id="metricValue1"></span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" id="bar1"></div>
+                </div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-top">
+                    <span id="metricName2"></span>
+                    <span id="metricValue2"></span>
+                </div>
+
+                <div class="bar">
+                    <div class="fill" id="bar2"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="analysis">
+
+            <h2>🗺️ Preparation Path</h2>
+
+            <div class="path">
+
+                <div class="step">
+                    <span>1️⃣</span>
+                    <p>Build Foundation</p>
+                </div>
+
+                <div class="step">
+                    <span>2️⃣</span>
+                    <p>Learn Core Skills</p>
+                </div>
+
+                <div class="step">
+                    <span>3️⃣</span>
+                    <p>Build Projects</p>
+                </div>
+
+                <div class="step">
+                    <span>4️⃣</span>
+                    <p>Apply for Jobs</p>
+                </div>
+
+            </div>
+
+            <div class="note">
+                💡 This comparison is a guidance tool. The best career path depends on the student's interests, existing skills, learning goals and career preferences.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const careers = {
+
+    software:{
+        name:"Software Developer",
+        roles:"Frontend Developer, Backend Developer, Full Stack Developer",
+        time:"6–12 Months",
+        difficulty:"Intermediate",
+        growth:"High",
+        score:88,
+        skills:["Python","Java","HTML","CSS","JavaScript","Git"]
+    },
+
+    data:{
+        name:"Data Analyst",
+        roles:"Data Analyst, Business Analyst, Reporting Analyst",
+        time:"4–8 Months",
+        difficulty:"Intermediate",
+        growth:"High",
+        score:82,
+        skills:["Excel","SQL","Python","Statistics","Power BI"]
+    },
+
+    aiml:{
+        name:"AI / ML Engineer",
+        roles:"ML Engineer, AI Engineer, Data Scientist",
+        time:"8–18 Months",
+        difficulty:"Advanced",
+        growth:"Very High",
+        score:94,
+        skills:["Python","Machine Learning","Statistics","SQL","TensorFlow"]
+    },
+
+    uiux:{
+        name:"UI/UX Designer",
+        roles:"UI Designer, UX Designer, Product Designer",
+        time:"3–6 Months",
+        difficulty:"Beginner–Intermediate",
+        growth:"High",
+        score:80,
+        skills:["Figma","UI Design","UX Research","Wireframing"]
+    },
+
+    cyber:{
+        name:"Cyber Security Analyst",
+        roles:"Security Analyst, SOC Analyst, Security Engineer",
+        time:"6–12 Months",
+        difficulty:"Intermediate",
+        growth:"Very High",
+        score:90,
+        skills:["Networking","Linux","Cyber Security","Python","SIEM"]
+    }
+
+};
+
+function showCareer(data, number){
+
+    document.getElementById("name"+number).innerText=data.name;
+    document.getElementById("roles"+number).innerText=data.roles;
+    document.getElementById("time"+number).innerText=data.time;
+    document.getElementById("difficulty"+number).innerText=data.difficulty;
+    document.getElementById("growth"+number).innerText=data.growth;
+
+    document.getElementById("skills"+number).innerHTML="";
+
+    data.skills.forEach(skill=>{
+        document.getElementById("skills"+number).innerHTML +=
+        `<span class="tag">${skill}</span>`;
+    });
+}
+
+function compareCareers(){
+
+    const c1=document.getElementById("career1").value;
+    const c2=document.getElementById("career2").value;
+
+    const data1=careers[c1];
+    const data2=careers[c2];
+
+    showCareer(data1,1);
+    showCareer(data2,2);
+
+    document.getElementById("metricName1").innerText=
+        data1.name+" Career Growth";
+
+    document.getElementById("metricValue1").innerText=
+        data1.score+"%";
+
+    document.getElementById("bar1").style.width=
+        data1.score+"%";
+
+    document.getElementById("metricName2").innerText=
+        data2.name+" Career Growth";
+
+    document.getElementById("metricValue2").innerText=
+        data2.score+"%";
+
+    document.getElementById("bar2").style.width=
+        data2.score+"%";
+
+    document.getElementById("analysisText").innerText=
+        "The comparison shows the learning requirements, core skills, job roles and growth indicators for "+
+        data1.name+" and "+data2.name+". Use these details together with your interests, current skills and learning goals when planning your career.";
+
+    document.getElementById("result").style.display="block";
+
+    window.scrollTo({
+        top:document.getElementById("result").offsetTop-20,
+        behavior:"smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
