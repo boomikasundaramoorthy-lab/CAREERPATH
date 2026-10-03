@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Career Alerts | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(0,0,0,0.18);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    color:#f7d6ff;
+}
+
+.home-btn{
+    text-decoration:none;
+    color:white;
+    padding:10px 18px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#eadcff;
+}
+
+/* Alert Summary */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.summary-card{
+    padding:22px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.summary-card h2{
+    font-size:30px;
+    margin-bottom:5px;
+    color:#ffd6f8;
+}
+
+.summary-card p{
+    color:#e8d8ef;
+}
+
+/* Preferences */
+
+.preferences{
+    background:rgba(255,255,255,0.12);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+    backdrop-filter:blur(15px);
+}
+
+.preferences h2{
+    margin-bottom:18px;
+}
+
+.preference-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.preference{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    background:rgba(255,255,255,0.08);
+    border-radius:12px;
+}
+
+.switch{
+    position:relative;
+    width:48px;
+    height:25px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    background:#777;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    width:19px;
+    height:19px;
+    left:3px;
+    top:3px;
+    background:white;
+    border-radius:50%;
+    transition:0.3s;
+}
+
+input:checked + .slider{
+    background:#c471ed;
+}
+
+input:checked + .slider:before{
+    transform:translateX(23px);
+}
+
+/* Filters */
+
+.filter-box{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.filter-btn{
+    border:none;
+    padding:11px 18px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    cursor:pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+/* Notifications */
+
+.alert-list{
+    display:grid;
+    gap:15px;
+}
+
+.alert{
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.12);
+    border-left:5px solid #c471ed;
+    backdrop-filter:blur(12px);
+    transition:0.3s;
+}
+
+.alert:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,0.17);
+}
+
+.alert.read{
+    opacity:0.55;
+}
+
+.alert-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.alert h3{
+    margin-bottom:8px;
+}
+
+.alert p{
+    color:#e5d8eb;
+    line-height:1.5;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:15px;
+    font-size:12px;
+    background:#c471ed;
+    margin-bottom:10px;
+}
+
+.date{
+    color:#cdbbd6;
+    font-size:13px;
+    margin-top:10px;
+}
+
+.alert-actions{
+    margin-top:15px;
+}
+
+.read-btn{
+    border:none;
+    padding:8px 14px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    cursor:pointer;
+}
+
+.read-btn:hover{
+    background:#c471ed;
+}
+
+.bottom-actions{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.action-btn{
+    border:none;
+    padding:12px 22px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.action-btn.secondary{
+    background:rgba(255,255,255,0.13);
+}
+
+.no-alert{
+    text-align:center;
+    padding:35px;
+    color:#dfd1e6;
+    display:none;
+}
+
+/* Responsive */
+
+@media(max-width:700px){
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .preference-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:28px;
+    }
+
+    .alert-top{
+        flex-direction:column;
+    }
+
+    .navbar{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">CAREERPATH</div>
+    <a href="index.html" class="home-btn">Home</a>
+</nav>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🔔 Smart Career Alerts</h1>
+        <p>Stay updated with opportunities that match your career goals.</p>
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary">
+
+        <div class="summary-card">
+            <h2 id="totalCount">5</h2>
+            <p>Total Alerts</p>
+        </div>
+
+        <div class="summary-card">
+            <h2 id="unreadCount">4</h2>
+            <p>Unread Alerts</p>
+        </div>
+
+        <div class="summary-card">
+            <h2>3</h2>
+            <p>Career Matches</p>
+        </div>
+
+    </div>
+
+    <!-- Preferences -->
+
+    <div class="preferences">
+
+        <h2>⚙️ Alert Preferences</h2>
+
+        <div class="preference-grid">
+
+            <div class="preference">
+                <span>💼 Job Alerts</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference">
+                <span>🎓 Course Alerts</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference">
+                <span>⏰ Deadline Alerts</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="preference">
+                <span>🔥 Skill Alerts</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Filters -->
+
+    <div class="filter-box">
+
+        <button class="filter-btn active" onclick="filterAlerts('all',this)">
+            All
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('job',this)">
+            💼 Jobs
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('course',this)">
+            🎓 Courses
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('deadline',this)">
+            ⏰ Deadlines
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('skill',this)">
+            🔥 Skills
+        </button>
+
+    </div>
+
+    <!-- Alert List -->
+
+    <div class="alert-list" id="alertList">
+
+        <div class="alert unread" data-type="job">
+
+            <div class="alert-top">
+                <div>
+                    <span class="badge">NEW JOB</span>
+                    <h3>💼 Junior Web Developer Opportunity</h3>
+                    <p>
+                        A new Junior Web Developer opportunity matches
+                        your HTML, CSS and JavaScript skills.
+                    </p>
+                </div>
+            </div>
+
+            <div class="date">Today • 10:30 AM</div>
+
+            <div class="alert-actions">
+                <button class="read-btn" onclick="markRead(this)">
+                    Mark as Read
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="alert unread" data-type="course">
+
+            <div class="alert-top">
+                <div>
+                    <span class="badge">NEW COURSE</span>
+                    <h3>🎓 Python Programming Course</h3>
+                    <p>
+                        A new beginner-friendly Python course is available
+                        for your career development.
+                    </p>
+                </div>
+            </div>
+
+            <div class="date">Today • 9:15 AM</div>
+
+            <div class="alert-actions">
+                <button class="read-btn" onclick="markRead(this)">
+                    Mark as Read
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="alert unread" data-type="deadline">
+
+            <div class="alert-top">
+                <div>
+                    <span class="badge">DEADLINE</span>
+                    <h3>⏰ Internship Application Deadline</h3>
+                    <p>
+                        The application deadline for a selected internship
+                        is approaching. Apply before the deadline.
+                    </p>
+                </div>
+            </div>
+
+            <div class="date">Tomorrow • 8:00 AM</div>
+
+            <div class="alert-actions">
+                <button class="read-btn" onclick="markRead(this)">
+                    Mark as Read
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="alert unread" data-type="skill">
+
+            <div class="alert-top">
+                <div>
+                    <span class="badge">TRENDING SKILL</span>
+                    <h3>🔥 JavaScript is Trending</h3>
+                    <p>
+                        JavaScript is currently a useful skill for
+                        Web Developer career paths.
+                    </p>
+                </div>
+            </div>
+
+            <div class="date">Yesterday • 6:20 PM</div>
+
+            <div class="alert-actions">
+                <button class="read-btn" onclick="markRead(this)">
+                    Mark as Read
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="alert read" data-type="job">
+
+            <div class="alert-top">
+                <div>
+                    <span class="badge">CAREER MATCH</span>
+                    <h3>🎯 New Career Opportunity Match</h3>
+                    <p>
+                        Software Developer opportunities match your
+                        selected career interests.
+                    </p>
+                </div>
+            </div>
+
+            <div class="date">2 days ago</div>
+
+            <div class="alert-actions">
+                <button class="read-btn" onclick="markRead(this)">
+                    Mark as Read
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="no-alert" id="noAlert">
+        🔍 No alerts found for this category.
+    </div>
+
+    <div class="bottom-actions">
+
+        <button class="action-btn" onclick="markAllRead()">
+            ✅ Mark All as Read
+        </button>
+
+        <button class="action-btn secondary" onclick="clearAlerts()">
+            🗑️ Clear All
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function updateCount(){
+
+    const alerts = document.querySelectorAll(".alert");
+
+    let unread = 0;
+
+    alerts.forEach(alert => {
+
+        if(!alert.classList.contains("read")){
+            unread++;
+        }
+
+    });
+
+    document.getElementById("totalCount").innerText = alerts.length;
+    document.getElementById("unreadCount").innerText = unread;
+}
+
+
+function markRead(button){
+
+    const alert = button.closest(".alert");
+
+    alert.classList.remove("unread");
+    alert.classList.add("read");
+
+    button.innerText = "✓ Read";
+
+    updateCount();
+}
+
+
+function markAllRead(){
+
+    document.querySelectorAll(".alert").forEach(alert => {
+
+        alert.classList.remove("unread");
+        alert.classList.add("read");
+
+        const button = alert.querySelector(".read-btn");
+
+        if(button){
+            button.innerText = "✓ Read";
+        }
+
+    });
+
+    updateCount();
+}
+
+
+function clearAlerts(){
+
+    document.getElementById("alertList").innerHTML = "";
+
+    document.getElementById("noAlert").style.display = "block";
+
+    updateCount();
+}
+
+
+function filterAlerts(type, button){
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const alerts = document.querySelectorAll(".alert");
+
+    let visible = 0;
+
+    alerts.forEach(alert => {
+
+        if(type === "all" || alert.dataset.type === type){
+
+            alert.style.display = "block";
+            visible++;
+
+        }else{
+
+            alert.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noAlert").style.display =
+        visible === 0 ? "block" : "none";
+}
+
+
+updateCount();
+
+</script>
+
+</body>
+</html>
