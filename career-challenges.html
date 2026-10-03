@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Challenges | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.18);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1050px;
+    margin:45px auto;
+}
+
+.heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    color:#eadcff;
+}
+
+.progress-card,
+.challenge,
+.badges{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:22px;
+    padding:25px;
+    margin-bottom:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,0.2);
+}
+
+.progress-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:40%;
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    transition:0.4s;
+}
+
+.challenge{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.challenge-info{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.icon{
+    font-size:40px;
+}
+
+.challenge h3{
+    margin-bottom:7px;
+}
+
+.challenge p{
+    color:#eadcff;
+    font-size:14px;
+}
+
+.complete-btn{
+    border:none;
+    padding:11px 18px;
+    border-radius:22px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.complete-btn.completed{
+    background:rgba(255,255,255,0.2);
+    cursor:default;
+}
+
+.badges h2{
+    margin-bottom:20px;
+}
+
+.badge-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+
+.badge{
+    text-align:center;
+    padding:20px 10px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    opacity:0.4;
+    transition:0.3s;
+}
+
+.badge.unlocked{
+    opacity:1;
+    box-shadow:0 0 20px rgba(247,143,179,0.35);
+}
+
+.badge-icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.badge p{
+    font-size:13px;
+    color:#eadcff;
+}
+
+.message{
+    display:none;
+    text-align:center;
+    margin-top:20px;
+    color:#ffd6e7;
+    font-weight:bold;
+}
+
+@media(max-width:750px){
+
+    .badge-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .challenge{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .heading h1{
+        font-size:28px;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>🏆 Career Challenges</h1>
+
+        <p>
+            Complete challenges, build your career and unlock badges.
+        </p>
+
+    </div>
+
+    <!-- Progress -->
+
+    <div class="progress-card">
+
+        <div class="progress-title">
+
+            <strong>Career Challenge Progress</strong>
+
+            <span id="progressText">
+                0 / 5
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Challenge 1 -->
+
+    <div class="challenge">
+
+        <div class="challenge-info">
+
+            <div class="icon">📚</div>
+
+            <div>
+
+                <h3>Complete a Skill Course</h3>
+
+                <p>
+                    Finish one career-related learning course.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="complete-btn"
+            onclick="completeChallenge(this,0)">
+            Complete
+        </button>
+
+    </div>
+
+
+    <!-- Challenge 2 -->
+
+    <div class="challenge">
+
+        <div class="challenge-info">
+
+            <div class="icon">💻</div>
+
+            <div>
+
+                <h3>Build a Project</h3>
+
+                <p>
+                    Create one practical project for your portfolio.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="complete-btn"
+            onclick="completeChallenge(this,1)">
+            Complete
+        </button>
+
+    </div>
+
+
+    <!-- Challenge 3 -->
+
+    <div class="challenge">
+
+        <div class="challenge-info">
+
+            <div class="icon">📄</div>
+
+            <div>
+
+                <h3>Prepare Your Resume</h3>
+
+                <p>
+                    Create or update your professional resume.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="complete-btn"
+            onclick="completeChallenge(this,2)">
+            Complete
+        </button>
+
+    </div>
+
+
+    <!-- Challenge 4 -->
+
+    <div class="challenge">
+
+        <div class="challenge-info">
+
+            <div class="icon">🎤</div>
+
+            <div>
+
+                <h3>Practice Interview</h3>
+
+                <p>
+                    Complete an interview practice session.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="complete-btn"
+            onclick="completeChallenge(this,3)">
+            Complete
+        </button>
+
+    </div>
+
+
+    <!-- Challenge 5 -->
+
+    <div class="challenge">
+
+        <div class="challenge-info">
+
+            <div class="icon">🚀</div>
+
+            <div>
+
+                <h3>Explore Career Opportunities</h3>
+
+                <p>
+                    Explore jobs or internships related to your career.
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="complete-btn"
+            onclick="completeChallenge(this,4)">
+            Complete
+        </button>
+
+    </div>
+
+
+    <!-- Badges -->
+
+    <div class="badges">
+
+        <h2>🏅 My Badges</h2>
+
+        <div class="badge-grid">
+
+            <div class="badge" id="badge0">
+
+                <div class="badge-icon">📚</div>
+
+                <strong>First Skill</strong>
+
+                <p>Complete a course</p>
+
+            </div>
+
+            <div class="badge" id="badge1">
+
+                <div class="badge-icon">💻</div>
+
+                <strong>Project Builder</strong>
+
+                <p>Build a project</p>
+
+            </div>
+
+            <div class="badge" id="badge2">
+
+                <div class="badge-icon">📄</div>
+
+                <strong>Resume Ready</strong>
+
+                <p>Prepare your resume</p>
+
+            </div>
+
+            <div class="badge" id="badge3">
+
+                <div class="badge-icon">🎤</div>
+
+                <strong>Interview Ready</strong>
+
+                <p>Practice interview</p>
+
+            </div>
+
+            <div class="badge" id="badge4">
+
+                <div class="badge-icon">🚀</div>
+
+                <strong>Career Explorer</strong>
+
+                <p>Explore opportunities</p>
+
+            </div>
+
+        </div>
+
+        <div
+            class="message"
+            id="message">
+            🎉 Amazing! All career challenges completed!
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let completed = 0;
+
+function completeChallenge(button,index){
+
+    if(button.classList.contains("completed")){
+        return;
+    }
+
+    button.classList.add("completed");
+
+    button.textContent = "✓ Completed";
+
+    document.getElementById("badge" + index)
+        .classList.add("unlocked");
+
+    completed++;
+
+    document.getElementById("progressText").textContent =
+        completed + " / 5";
+
+    document.getElementById("progressFill").style.width =
+        (completed / 5 * 100) + "%";
+
+    if(completed === 5){
+
+        document.getElementById("message").style.display =
+            "block";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
