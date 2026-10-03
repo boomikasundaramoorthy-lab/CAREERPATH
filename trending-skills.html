@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trending Skills | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.18);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:45px auto;
+}
+
+.heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    color:#eadcff;
+}
+
+.filter-box{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+select{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.skill-card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.skill-card:hover{
+    transform:translateY(-5px);
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.skill-card h2{
+    margin-bottom:8px;
+}
+
+.category{
+    color:#f5b7d5;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.demand{
+    margin-bottom:12px;
+    font-weight:bold;
+}
+
+.bar{
+    height:10px;
+    width:100%;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:15px;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.career{
+    color:#eadcff;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:15px;
+    padding:6px 12px;
+    border-radius:15px;
+    background:rgba(247,143,179,0.2);
+    color:#ffd8e7;
+    font-size:12px;
+}
+
+@media(max-width:850px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .heading h1{
+        font-size:28px;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>🔥 Trending Skills</h1>
+
+        <p>
+            Explore skills that can strengthen your career opportunities.
+        </p>
+
+    </div>
+
+    <div class="filter-box">
+
+        <select id="categoryFilter"
+                onchange="filterSkills()">
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="programming">
+                Programming
+            </option>
+
+            <option value="data">
+                Data & AI
+            </option>
+
+            <option value="design">
+                Design
+            </option>
+
+            <option value="security">
+                Cyber Security
+            </option>
+
+            <option value="professional">
+                Professional Skills
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="skill-card"
+             data-category="programming">
+
+            <div class="icon">💻</div>
+
+            <h2>Python</h2>
+
+            <div class="category">
+                Programming
+            </div>
+
+            <div class="demand">
+                Demand: 90%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:90%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Software Developer,
+                Data Analyst, AI/ML
+            </div>
+
+            <span class="badge">
+                🔥 High Demand
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="data">
+
+            <div class="icon">🤖</div>
+
+            <h2>AI & Machine Learning</h2>
+
+            <div class="category">
+                Data & AI
+            </div>
+
+            <div class="demand">
+                Demand: 95%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:95%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: AI Engineer,
+                ML Engineer, Data Scientist
+            </div>
+
+            <span class="badge">
+                🚀 Growing Skill
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="data">
+
+            <div class="icon">📊</div>
+
+            <h2>Data Analytics</h2>
+
+            <div class="category">
+                Data & AI
+            </div>
+
+            <div class="demand">
+                Demand: 88%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:88%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Data Analyst,
+                Business Analyst
+            </div>
+
+            <span class="badge">
+                📈 Popular
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="programming">
+
+            <div class="icon">🌐</div>
+
+            <h2>JavaScript</h2>
+
+            <div class="category">
+                Programming
+            </div>
+
+            <div class="demand">
+                Demand: 86%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:86%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Web Developer,
+                Frontend Developer
+            </div>
+
+            <span class="badge">
+                🔥 High Demand
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="design">
+
+            <div class="icon">🎨</div>
+
+            <h2>UI/UX Design</h2>
+
+            <div class="category">
+                Design
+            </div>
+
+            <div class="demand">
+                Demand: 82%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:82%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: UI Designer,
+                UX Designer, Product Designer
+            </div>
+
+            <span class="badge">
+                ✨ Creative Skill
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="security">
+
+            <div class="icon">🔐</div>
+
+            <h2>Cyber Security</h2>
+
+            <div class="category">
+                Cyber Security
+            </div>
+
+            <div class="demand">
+                Demand: 91%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:91%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Security Analyst,
+                Cyber Security Engineer
+            </div>
+
+            <span class="badge">
+                🛡️ Growing Skill
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="programming">
+
+            <div class="icon">🗄️</div>
+
+            <h2>SQL</h2>
+
+            <div class="category">
+                Programming
+            </div>
+
+            <div class="demand">
+                Demand: 87%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:87%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Data Analyst,
+                Backend Developer
+            </div>
+
+            <span class="badge">
+                📌 Essential
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="professional">
+
+            <div class="icon">🗣️</div>
+
+            <h2>Communication</h2>
+
+            <div class="category">
+                Professional Skills
+            </div>
+
+            <div class="demand">
+                Demand: 84%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:84%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: All Professional
+                Careers
+            </div>
+
+            <span class="badge">
+                ⭐ Important
+            </span>
+
+        </div>
+
+
+        <div class="skill-card"
+             data-category="professional">
+
+            <div class="icon">🧠</div>
+
+            <h2>Problem Solving</h2>
+
+            <div class="category">
+                Professional Skills
+            </div>
+
+            <div class="demand">
+                Demand: 89%
+            </div>
+
+            <div class="bar">
+                <div class="fill"
+                     style="width:89%">
+                </div>
+            </div>
+
+            <div class="career">
+                Careers: Software,
+                Data, Security & More
+            </div>
+
+            <span class="badge">
+                🚀 Core Skill
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function filterSkills(){
+
+    const selected =
+        document.getElementById("categoryFilter").value;
+
+    const cards =
+        document.querySelectorAll(".skill-card");
+
+    cards.forEach(function(card){
+
+        const category =
+            card.getAttribute("data-category");
+
+        if(selected === "all" ||
+           category === selected){
+
+            card.style.display = "block";
+
+        }
+        else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
