@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Recommendation | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:40px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+label{
+    display:block;
+    margin:15px 0 8px;
+    font-weight:bold;
+}
+
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.results{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.project{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    padding:22px;
+    border-radius:18px;
+}
+
+.project h3{
+    color:#ffd6f6;
+    margin-bottom:10px;
+}
+
+.project p{
+    color:#eee;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+.tag{
+    display:inline-block;
+    background:rgba(196,113,237,0.3);
+    padding:6px 10px;
+    border-radius:20px;
+    margin:4px;
+    font-size:12px;
+}
+
+.match{
+    color:#ffd6f6;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.hidden{
+    display:none;
+}
+
+.home-btn{
+    display:inline-block;
+    margin-top:15px;
+    color:#ffd6f6;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🚀 Project Recommendation Engine</h1>
+        <p>Find project ideas that match your career goal and skills.</p>
+    </div>
+
+    <div class="card">
+
+        <label>🎯 Select Your Career</label>
+
+        <select id="career">
+            <option value="software">Software Developer</option>
+            <option value="data">Data Analyst</option>
+            <option value="ai">AI / Machine Learning</option>
+            <option value="uiux">UI/UX Designer</option>
+            <option value="cyber">Cyber Security</option>
+        </select>
+
+        <label>💡 Enter Your Skills</label>
+
+        <textarea id="skills"
+        placeholder="Example: Python, HTML, CSS, JavaScript, SQL"></textarea>
+
+        <button onclick="recommendProjects()">
+            🔍 Recommend Projects
+        </button>
+
+    </div>
+
+    <div id="output" class="card hidden">
+
+        <h2>✨ Recommended Projects</h2>
+
+        <div id="results" class="results"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const projects = {
+
+software: [
+    {
+        name:"Student Management System",
+        desc:"Create a web application to manage student details, courses and attendance.",
+        skills:["HTML","CSS","JavaScript","Database"]
+    },
+    {
+        name:"Online Job Portal",
+        desc:"Build a platform where students can search and apply for jobs and internships.",
+        skills:["HTML","CSS","JavaScript","SQL"]
+    },
+    {
+        name:"E-Commerce Website",
+        desc:"Create an online shopping website with products, cart and user login.",
+        skills:["HTML","CSS","JavaScript","Database"]
+    }
+],
+
+data: [
+    {
+        name:"Student Performance Analysis",
+        desc:"Analyze student marks and identify performance patterns.",
+        skills:["Python","Pandas","SQL","Data Analysis"]
+    },
+    {
+        name:"Sales Data Dashboard",
+        desc:"Build a dashboard to analyze sales and business performance.",
+        skills:["Python","Excel","SQL","Data Visualization"]
+    },
+    {
+        name:"Customer Data Analysis",
+        desc:"Analyze customer information to discover useful business insights.",
+        skills:["Python","Pandas","SQL","Visualization"]
+    }
+],
+
+ai: [
+    {
+        name:"AI Career Recommendation System",
+        desc:"Recommend suitable careers based on student skills and interests.",
+        skills:["Python","Machine Learning","Data"]
+    },
+    {
+        name:"Student Result Prediction",
+        desc:"Predict student performance using machine learning.",
+        skills:["Python","Machine Learning","Pandas"]
+    },
+    {
+        name:"Chatbot Application",
+        desc:"Create a chatbot that answers frequently asked questions.",
+        skills:["Python","AI","NLP"]
+    }
+],
+
+uiux: [
+    {
+        name:"Career Guidance App Design",
+        desc:"Design a modern mobile interface for career guidance.",
+        skills:["Figma","UI Design","UX Research"]
+    },
+    {
+        name:"Food Delivery App UI",
+        desc:"Create an attractive food delivery application interface.",
+        skills:["Figma","Wireframing","UI Design"]
+    },
+    {
+        name:"College App Design",
+        desc:"Design a student-friendly college mobile application.",
+        skills:["Figma","UX","Prototyping"]
+    }
+],
+
+cyber: [
+    {
+        name:"Secure Login System",
+        desc:"Create a secure authentication system with password protection.",
+        skills:["HTML","JavaScript","Security"]
+    },
+    {
+        name:"Phishing Awareness System",
+        desc:"Build an educational system to help users identify phishing attacks.",
+        skills:["Cyber Security","Web","Security"]
+    },
+    {
+        name:"Password Strength Checker",
+        desc:"Create a tool that checks password strength and security.",
+        skills:["JavaScript","Security","Web"]
+    }
+]
+
+};
+
+function recommendProjects(){
+
+    const career = document.getElementById("career").value;
+
+    const userSkills = document
+        .getElementById("skills")
+        .value
+        .toLowerCase()
+        .split(",")
+        .map(skill => skill.trim())
+        .filter(skill => skill !== "");
+
+    const selectedProjects = projects[career];
+
+    const results = document.getElementById("results");
+
+    results.innerHTML = "";
+
+    selectedProjects.forEach(project => {
+
+        let matched = 0;
+
+        project.skills.forEach(skill => {
+
+            const skillLower = skill.toLowerCase();
+
+            if(userSkills.some(userSkill =>
+                userSkill.includes(skillLower) ||
+                skillLower.includes(userSkill)
+            )){
+                matched++;
+            }
+
+        });
+
+        let percentage =
+            Math.round((matched / project.skills.length) * 100);
+
+        if(userSkills.length === 0){
+            percentage = 50;
+        }
+
+        let message = "";
+
+        if(percentage >= 70){
+            message = "🔥 Strong Match";
+        }
+        else if(percentage >= 40){
+            message = "✨ Good Project";
+        }
+        else{
+            message = "📚 Learn Skills First";
+        }
+
+        results.innerHTML += `
+
+            <div class="project">
+
+                <h3>${project.name}</h3>
+
+                <p>${project.desc}</p>
+
+                <div>
+                    ${project.skills.map(skill =>
+                        `<span class="tag">${skill}</span>`
+                    ).join("")}
+                </div>
+
+                <div class="match">
+                    Match: ${percentage}%<br>
+                    ${message}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    document.getElementById("output").classList.remove("hidden");
+
+    document.getElementById("output")
+        .scrollIntoView({behavior:"smooth"});
+
+}
+
+</script>
+
+</body>
+</html>
