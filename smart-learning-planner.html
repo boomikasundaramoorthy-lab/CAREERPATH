@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Learning Planner | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+        radial-gradient(circle at 10% 10%,#8e44ad 0%,transparent 30%),
+        radial-gradient(circle at 90% 20%,#f78fb3 0%,transparent 28%),
+        linear-gradient(135deg,#16002b,#35105c,#642783);
+    padding-bottom:60px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,.20);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:25px;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.15);
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3,#ffd1e6);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#eadcff;
+    font-size:17px;
+}
+
+.glass{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(16px);
+    border-radius:23px;
+    padding:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+
+.controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+select,input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    color:#35105c;
+    background:white;
+    font-size:15px;
+}
+
+button{
+    border:none;
+    padding:13px 22px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.04);
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.summary-card{
+    text-align:center;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.14);
+}
+
+.summary-card span{
+    display:block;
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.summary-card strong{
+    font-size:25px;
+}
+
+.summary-card p{
+    color:#eadcff;
+    margin-top:5px;
+}
+
+.section-title{
+    margin:28px 0 16px;
+    font-size:27px;
+}
+
+.task-list{
+    display:grid;
+    gap:15px;
+}
+
+.task{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+}
+
+.task:hover{
+    transform:translateX(5px);
+}
+
+.check{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:2px solid #f78fb3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.task.completed .check{
+    background:linear-gradient(135deg,#c471ed,#f78fb3);
+    border:none;
+}
+
+.task.completed h3,
+.task.completed p{
+    text-decoration:line-through;
+    opacity:.6;
+}
+
+.task-content{
+    flex:1;
+}
+
+.task h3{
+    margin-bottom:6px;
+}
+
+.task p{
+    color:#eadcff;
+    font-size:14px;
+}
+
+.time{
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    font-size:12px;
+    white-space:nowrap;
+}
+
+.progress-box{
+    margin-top:25px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.progress{
+    height:14px;
+    background:rgba(255,255,255,.14);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    border-radius:20px;
+    transition:.4s;
+}
+
+.tip{
+    margin-top:25px;
+    padding:23px;
+    border-radius:20px;
+    background:linear-gradient(
+        135deg,
+        rgba(196,113,237,.25),
+        rgba(247,143,179,.20)
+    );
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.tip h3{
+    margin-bottom:8px;
+}
+
+.tip p{
+    color:#eadcff;
+    line-height:1.6;
+}
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .task{
+        align-items:flex-start;
+    }
+
+    .time{
+        margin-left:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">💜 CAREERPATH</div>
+    <a href="index.html">Home</a>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>📅 Smart Learning Planner</h1>
+        <p>
+            Plan your learning, complete your tasks and grow your career step by step. ✨
+        </p>
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="glass controls">
+
+        <div>
+            <label>🎯 Career Goal</label>
+
+            <select id="career">
+                <option>Software Developer</option>
+                <option>Data Analyst</option>
+                <option>AI & Machine Learning</option>
+                <option>UI/UX Designer</option>
+                <option>Cyber Security</option>
+            </select>
+        </div>
+
+        <div>
+            <label>📅 Learning Day</label>
+
+            <input
+                type="date"
+                id="learningDate"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+        <div class="summary-card">
+            <span>📚</span>
+            <strong id="totalTasks">5</strong>
+            <p>Total Tasks</p>
+        </div>
+
+        <div class="summary-card">
+            <span>✅</span>
+            <strong id="completedTasks">0</strong>
+            <p>Completed</p>
+        </div>
+
+        <div class="summary-card">
+            <span>⏱️</span>
+            <strong>2.5h</strong>
+            <p>Today's Plan</p>
+        </div>
+
+    </div>
+
+
+    <h2 class="section-title">🌟 Today's Learning Plan</h2>
+
+
+    <!-- TASKS -->
+
+    <div class="glass task-list" id="taskList">
+
+        <div class="task">
+
+            <div class="check" onclick="completeTask(this)">
+            </div>
+
+            <div class="task-content">
+                <h3>🐍 Python Practice</h3>
+                <p>
+                    Practice variables, loops and functions.
+                </p>
+            </div>
+
+            <div class="time">30 min</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="check" onclick="completeTask(this)">
+            </div>
+
+            <div class="task-content">
+                <h3>🌐 HTML & CSS</h3>
+                <p>
+                    Build one responsive webpage section.
+                </p>
+            </div>
+
+            <div class="time">30 min</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="check" onclick="completeTask(this)">
+            </div>
+
+            <div class="task-content">
+                <h3>🗄️ SQL Practice</h3>
+                <p>
+                    Practice SELECT, WHERE and JOIN queries.
+                </p>
+            </div>
+
+            <div class="time">30 min</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="check" onclick="completeTask(this)">
+            </div>
+
+            <div class="task-content">
+                <h3>🛠️ Project Work</h3>
+                <p>
+                    Spend time improving your career project.
+                </p>
+            </div>
+
+            <div class="time">30 min</div>
+
+        </div>
+
+
+        <div class="task">
+
+            <div class="check" onclick="completeTask(this)">
+            </div>
+
+            <div class="task-content">
+                <h3>🎤 Interview Practice</h3>
+                <p>
+                    Practice 3 technical interview questions.
+                </p>
+            </div>
+
+            <div class="time">30 min</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="glass progress-box">
+
+        <div class="progress-info">
+            <strong>📊 Today's Progress</strong>
+            <strong id="progressText">0%</strong>
+        </div>
+
+        <div class="progress">
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- TIP -->
+
+    <div class="tip">
+
+        <h3>💡 Smart Learning Tip</h3>
+
+        <p>
+            Don't try to learn everything in one day.
+            Complete small tasks consistently and build your skills
+            step by step. Every completed task brings you closer
+            to your dream career. 🚀💜
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function completeTask(check){
+
+    const task = check.parentElement;
+
+    task.classList.toggle("completed");
+
+    if(task.classList.contains("completed")){
+        check.innerHTML = "✓";
+    }
+    else{
+        check.innerHTML = "";
+    }
+
+    updateProgress();
+}
+
+
+function updateProgress(){
+
+    const tasks =
+        document.querySelectorAll(".task");
+
+    const completed =
+        document.querySelectorAll(".task.completed");
+
+    const total =
+        tasks.length;
+
+    const done =
+        completed.length;
+
+    const percentage =
+        total === 0
+        ? 0
+        : Math.round((done / total) * 100);
+
+    document.getElementById("completedTasks")
+        .innerText = done;
+
+    document.getElementById("progressText")
+        .innerText = percentage + "%";
+
+    document.getElementById("progressBar")
+        .style.width = percentage + "%";
+}
+
+
+document.getElementById("learningDate").valueAsDate =
+    new Date();
+
+</script>
+
+</body>
+</html>
