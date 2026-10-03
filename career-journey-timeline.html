@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Journey Timeline | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.progress-card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:35px;
+    text-align:center;
+}
+
+.progress-bar{
+    width:100%;
+    height:14px;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:18px;
+}
+
+.progress{
+    width:45%;
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    border-radius:20px;
+}
+
+.timeline{
+    position:relative;
+    max-width:850px;
+    margin:auto;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:4px;
+    background:rgba(255,255,255,0.25);
+    transform:translateX(-50%);
+}
+
+.timeline-item{
+    width:50%;
+    padding:20px 35px;
+    position:relative;
+}
+
+.timeline-item:nth-child(odd){
+    left:0;
+    text-align:right;
+}
+
+.timeline-item:nth-child(even){
+    left:50%;
+}
+
+.dot{
+    position:absolute;
+    top:30px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#c471ed,#f78fb3);
+    border:4px solid #4b176d;
+    z-index:2;
+}
+
+.timeline-item:nth-child(odd) .dot{
+    right:-10px;
+}
+
+.timeline-item:nth-child(even) .dot{
+    left:-10px;
+}
+
+.content{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:22px;
+    border-radius:18px;
+    transition:0.3s;
+}
+
+.content:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.17);
+}
+
+.content h3{
+    color:#ffd6f6;
+    margin-bottom:8px;
+}
+
+.content p{
+    color:#eee;
+    line-height:1.5;
+}
+
+.status{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    background:rgba(196,113,237,0.3);
+}
+
+.completed{
+    background:rgba(120,255,180,0.2);
+}
+
+.current{
+    background:rgba(255,215,100,0.2);
+}
+
+.next{
+    background:rgba(255,255,255,0.15);
+}
+
+.bottom{
+    text-align:center;
+    margin-top:40px;
+}
+
+.bottom a{
+    display:inline-block;
+    padding:13px 22px;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .timeline::before{
+        left:15px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even){
+        width:100%;
+        left:0;
+        padding-left:45px;
+        padding-right:0;
+        text-align:left;
+    }
+
+    .timeline-item:nth-child(odd) .dot,
+    .timeline-item:nth-child(even) .dot{
+        left:5px;
+        right:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🧭 My Career Journey</h1>
+        <p>Track your journey from learning skills to achieving your career goal.</p>
+    </div>
+
+    <div class="progress-card">
+
+        <h2>🚀 Career Journey Progress</h2>
+
+        <p style="margin-top:10px;color:#eadcff;">
+            4 of 8 milestones completed
+        </p>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <p style="margin-top:12px;color:#ffd6f6;">
+            45% Completed
+        </p>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>🎓 Education</h3>
+
+                <p>
+                    Complete your BCA education and build a strong
+                    foundation in computer applications.
+                </p>
+
+                <span class="status completed">
+                    ✓ Completed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>🧠 Learn Core Skills</h3>
+
+                <p>
+                    Develop programming, web development,
+                    database and communication skills.
+                </p>
+
+                <span class="status completed">
+                    ✓ Completed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>📚 Complete Courses</h3>
+
+                <p>
+                    Complete career-related courses and
+                    improve your technical knowledge.
+                </p>
+
+                <span class="status completed">
+                    ✓ Completed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>💻 Build Projects</h3>
+
+                <p>
+                    Create real-world projects and add them
+                    to your portfolio.
+                </p>
+
+                <span class="status current">
+                    ⭐ Current Step
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>📄 Prepare Resume</h3>
+
+                <p>
+                    Create a professional resume highlighting
+                    your skills, projects and achievements.
+                </p>
+
+                <span class="status next">
+                    🔒 Upcoming
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>🎤 Interview Preparation</h3>
+
+                <p>
+                    Practice technical and HR interview
+                    questions to improve confidence.
+                </p>
+
+                <span class="status next">
+                    🔒 Upcoming
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>💼 Apply for Jobs</h3>
+
+                <p>
+                    Find suitable jobs and internships and
+                    track your applications.
+                </p>
+
+                <span class="status next">
+                    🔒 Upcoming
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item">
+
+            <span class="dot"></span>
+
+            <div class="content">
+
+                <h3>🎯 Achieve Career Goal</h3>
+
+                <p>
+                    Reach your target career and start your
+                    professional journey.
+                </p>
+
+                <span class="status next">
+                    🔒 Future Goal
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bottom">
+
+        <a href="career-dashboard.html">
+            📊 Go to Career Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
