@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Skill Assessment | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:60px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(0,0,0,.18);
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#eadcff;
+    line-height:1.6;
+}
+
+.card{
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:22px;
+    padding:28px;
+    backdrop-filter:blur(15px);
+    margin-bottom:25px;
+}
+
+.card h2{
+    margin-bottom:18px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    color:#35104f;
+    outline:none;
+}
+
+.start-btn,
+.submit-btn,
+.reset-btn{
+    border:none;
+    border-radius:25px;
+    padding:13px 25px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:18px;
+}
+
+.start-btn,
+.submit-btn{
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+}
+
+.reset-btn{
+    background:rgba(255,255,255,.15);
+    color:white;
+    margin-left:10px;
+}
+
+.question{
+    padding:20px;
+    margin-bottom:15px;
+    background:rgba(255,255,255,.07);
+    border-radius:15px;
+}
+
+.question h3{
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.options label{
+    background:rgba(255,255,255,.1);
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+    font-size:13px;
+}
+
+.options input{
+    display:none;
+}
+
+.options label:has(input:checked){
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+.assessment{
+    display:none;
+}
+
+.score-box{
+    text-align:center;
+    padding:25px;
+    background:rgba(255,255,255,.08);
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.score{
+    font-size:55px;
+    font-weight:bold;
+    margin:10px;
+}
+
+.status{
+    color:#f8d9ff;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.skill{
+    background:rgba(255,255,255,.08);
+    padding:18px;
+    border-radius:15px;
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.bar{
+    height:9px;
+    background:rgba(255,255,255,.13);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    border-radius:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 14px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    margin:5px;
+    font-size:13px;
+}
+
+.plan{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.plan-box{
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+}
+
+.plan-box h3{
+    margin-bottom:10px;
+}
+
+.plan-box p{
+    color:#eadcff;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.note{
+    margin-top:20px;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(255,255,255,.07);
+    color:#eadcff;
+    line-height:1.6;
+    font-size:13px;
+}
+
+@media(max-width:750px){
+    nav{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav a{
+        margin:0 7px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .options{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .skills-grid,
+    .plan{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="career-dashboard.html">Dashboard</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🧠 Career Skill Assessment Center</h1>
+        <p>
+            Measure your current skills, identify skill gaps and create
+            a personalized improvement plan for your target career.
+        </p>
+    </div>
+
+    <!-- Career Selection -->
+
+    <div class="card" id="selectionCard">
+
+        <h2>🎯 Select Your Target Career</h2>
+
+        <select id="career">
+            <option value="software">Software Developer</option>
+            <option value="data">Data Analyst</option>
+            <option value="aiml">AI / ML Engineer</option>
+            <option value="uiux">UI/UX Designer</option>
+            <option value="cyber">Cyber Security Analyst</option>
+        </select>
+
+        <button class="start-btn" onclick="startAssessment()">
+            🚀 Start Skill Assessment
+        </button>
+
+    </div>
+
+    <!-- Questions -->
+
+    <div class="card assessment" id="assessment">
+
+        <h2>📝 Skill Assessment</h2>
+
+        <p style="color:#eadcff;margin-bottom:20px;">
+            Rate your current confidence for each skill.
+            There are no right or wrong answers.
+        </p>
+
+        <div class="question">
+            <h3>1. Programming / Technical Skills</h3>
+
+            <div class="options">
+                <label><input type="radio" name="q1" value="1"> Beginner</label>
+                <label><input type="radio" name="q1" value="2"> Basic</label>
+                <label><input type="radio" name="q1" value="3"> Good</label>
+                <label><input type="radio" name="q1" value="4"> Strong</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>2. Problem Solving</h3>
+
+            <div class="options">
+                <label><input type="radio" name="q2" value="1"> Beginner</label>
+                <label><input type="radio" name="q2" value="2"> Basic</label>
+                <label><input type="radio" name="q2" value="3"> Good</label>
+                <label><input type="radio" name="q2" value="4"> Strong</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>3. Communication</h3>
+
+            <div class="options">
+                <label><input type="radio" name="q3" value="1"> Beginner</label>
+                <label><input type="radio" name="q3" value="2"> Basic</label>
+                <label><input type="radio" name="q3" value="3"> Good</label>
+                <label><input type="radio" name="q3" value="4"> Strong</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>4. Analytical Thinking</h3>
+
+            <div class="options">
+                <label><input type="radio" name="q4" value="1"> Beginner</label>
+                <label><input type="radio" name="q4" value="2"> Basic</label>
+                <label><input type="radio" name="q4" value="3"> Good</label>
+                <label><input type="radio" name="q4" value="4"> Strong</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>5. Project / Practical Experience</h3>
+
+            <div class="options">
+                <label><input type="radio" name="q5" value="1"> Beginner</label>
+                <label><input type="radio" name="q5" value="2"> Basic</label>
+                <label><input type="radio" name="q5" value="3"> Good</label>
+                <label><input type="radio" name="q5" value="4"> Strong</label>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="calculateAssessment()">
+            📊 Generate My Skill Report
+        </button>
+
+    </div>
+
+    <!-- Result -->
+
+    <div class="assessment" id="result">
+
+        <div class="card">
+
+            <div class="score-box">
+
+                <div>Overall Career Skill Score</div>
+
+                <div class="score" id="score">0%</div>
+
+                <div class="status" id="status"></div>
+
+            </div>
+
+            <h2>📊 Skill Profile</h2>
+
+            <div class="skills-grid">
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Technical Skills</span>
+                        <span id="technical">0%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="fill" id="technicalBar"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Problem Solving</span>
+                        <span id="problem">0%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="fill" id="problemBar"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Communication</span>
+                        <span id="communication">0%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="fill" id="communicationBar"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-top">
+                        <span>Analytical Thinking</span>
+                        <span id="analytical">0%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="fill" id="analyticalBar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>⚠️ Identified Skill Gaps</h2>
+
+            <div id="gaps"></div>
+
+            <div class="note">
+                Skill gaps show the areas where additional learning or practical
+                experience may be useful before applying for your target career.
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🏆 Skill Strengths</h2>
+
+            <div id="strengths"></div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🗺️ Personalized Improvement Plan</h2>
+
+            <div class="plan">
+
+                <div class="plan-box">
+                    <h3>1️⃣ Learn</h3>
+                    <p id="learnPlan"></p>
+                </div>
+
+                <div class="plan-box">
+                    <h3>2️⃣ Practice</h3>
+                    <p>
+                        Solve practical problems, complete small projects
+                        and apply the concepts you learn.
+                    </p>
+                </div>
+
+                <div class="plan-box">
+                    <h3>3️⃣ Build</h3>
+                    <p>
+                        Create portfolio projects and prepare for
+                        internships or entry-level opportunities.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🎯 Recommended Next Step</h2>
+
+            <p id="nextStep" style="color:#eadcff;line-height:1.7;"></p>
+
+            <button class="reset-btn" onclick="resetAssessment()">
+                🔄 Assess Again
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function startAssessment(){
+
+    document.getElementById("assessment").style.display="block";
+
+    document.getElementById("selectionCard").style.display="none";
+
+    document.getElementById("assessment").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function getValue(name){
+
+    const selected=document.querySelector(
+        'input[name="'+name+'"]:checked'
+    );
+
+    return selected ? parseInt(selected.value) : 0;
+}
+
+function setSkill(id,bar,value){
+
+    document.getElementById(id).innerText=value+"%";
+
+    document.getElementById(bar).style.width=value+"%";
+}
+
+function calculateAssessment(){
+
+    const values=[
+        getValue("q1"),
+        getValue("q2"),
+        getValue("q3"),
+        getValue("q4"),
+        getValue("q5")
+    ];
+
+    if(values.includes(0)){
+
+        alert("Please answer all assessment questions.");
+
+        return;
+    }
+
+    const technical=values[0]*25;
+    const problem=values[1]*25;
+    const communication=values[2]*25;
+    const analytical=values[3]*25;
+
+    const overall=Math.round(
+        values.reduce((a,b)=>a+b,0) / 20 * 100
+    );
+
+    document.getElementById("score").innerText=
+        overall+"%";
+
+    let status="";
+
+    if(overall>=80){
+        status="🔥 Strong career readiness";
+    }
+    else if(overall>=60){
+        status="🚀 Good foundation — keep improving";
+    }
+    else if(overall>=40){
+        status="📚 Developing — more practice recommended";
+    }
+    else{
+        status="🌱 Beginner level — start with fundamentals";
+    }
+
+    document.getElementById("status").innerText=status;
+
+    setSkill(
+        "technical",
+        "technicalBar",
+        technical
+    );
+
+    setSkill(
+        "problem",
+        "problemBar",
+        problem
+    );
+
+    setSkill(
+        "communication",
+        "communicationBar",
+        communication
+    );
+
+    setSkill(
+        "analytical",
+        "analyticalBar",
+        analytical
+    );
+
+    const skillNames=[
+        "Technical Skills",
+        "Problem Solving",
+        "Communication",
+        "Analytical Thinking"
+    ];
+
+    const skillValues=[
+        technical,
+        problem,
+        communication,
+        analytical
+    ];
+
+    let gaps="";
+    let strengths="";
+
+    skillValues.forEach((value,index)=>{
+
+        if(value<60){
+
+            gaps +=
+            `<span class="badge">⚠️ ${skillNames[index]}</span>`;
+
+        }
+
+        if(value>=75){
+
+            strengths +=
+            `<span class="badge">🏆 ${skillNames[index]}</span>`;
+
+        }
+
+    });
+
+    if(gaps===""){
+        gaps="<span class='badge'>🎉 No major skill gap detected</span>";
+    }
+
+    if(strengths===""){
+        strengths="<span class='badge'>🌱 Build stronger core skills</span>";
+    }
+
+    document.getElementById("gaps").innerHTML=gaps;
+
+    document.getElementById("strengths").innerHTML=strengths;
+
+    const career=
+        document.getElementById("career").value;
+
+    const careerNames={
+        software:"Software Development",
+        data:"Data Analytics",
+        aiml:"AI / Machine Learning",
+        uiux:"UI/UX Design",
+        cyber:"Cyber Security"
+    };
+
+    const selectedCareer=careerNames[career];
+
+    const learning={
+        software:
+        "Focus on programming, data structures, Git, web technologies and project development.",
+
+        data:
+        "Focus on Excel, SQL, statistics, Python, data visualization and Power BI.",
+
+        aiml:
+        "Focus on Python, statistics, machine learning, data handling and AI frameworks.",
+
+        uiux:
+        "Focus on Figma, UX research, wireframing, prototyping and design principles.",
+
+        cyber:
+        "Focus on networking, Linux, security fundamentals, Python and security tools."
+    };
+
+    document.getElementById("learnPlan").innerText=
+        learning[career];
+
+    document.getElementById("nextStep").innerText=
+        "Your selected target career is "+selectedCareer+
+        ". Based on this assessment, continue improving the identified skill gaps, complete practical projects and then move to the Career Roadmap, Learning Path and Job Application modules.";
+
+    document.getElementById("assessment").style.display="none";
+
+    document.getElementById("result").style.display="block";
+
+    document.getElementById("result").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function resetAssessment(){
+
+    document.getElementById("result").style.display="none";
+
+    document.getElementById("selectionCard").style.display="block";
+
+    document.querySelectorAll(
+        'input[type="radio"]'
+    ).forEach(input=>{
+        input.checked=false;
+    });
+
+    document.getElementById("selectionCard").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
