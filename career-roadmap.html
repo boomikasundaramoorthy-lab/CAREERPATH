@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Roadmap | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#fff;
+    background:
+        radial-gradient(circle at top left, #9b59b6 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #f78fb3 0%, transparent 30%),
+        linear-gradient(135deg,#16002b,#4b176d,#7b3f98);
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(20,0,35,0.35);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,0.12);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#f6c8ff;
+    letter-spacing:1px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#f7b8ff;
+}
+
+/* MAIN */
+
+.container{
+    width:90%;
+    max-width:1050px;
+    margin:45px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 20px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.13);
+    border:1px solid rgba(255,255,255,0.15);
+    color:#f8c8ff;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:44px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#eadcf2;
+    line-height:1.6;
+}
+
+/* CAREER SELECT */
+
+.selector{
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:35px;
+    text-align:center;
+}
+
+.selector h2{
+    margin-bottom:15px;
+}
+
+select{
+    width:100%;
+    max-width:500px;
+    padding:15px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    font-size:16px;
+    color:#4b176d;
+}
+
+/* ROADMAP */
+
+.roadmap{
+    position:relative;
+    padding:10px 0;
+}
+
+.roadmap::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:4px;
+    transform:translateX(-50%);
+    background:linear-gradient(
+        to bottom,
+        #d9a7ff,
+        #f7b8d8,
+        #c471ed
+    );
+    border-radius:10px;
+}
+
+.step{
+    position:relative;
+    width:50%;
+    padding:15px 40px;
+    margin-bottom:20px;
+}
+
+.step:nth-child(odd){
+    left:0;
+    text-align:right;
+}
+
+.step:nth-child(even){
+    left:50%;
+    text-align:left;
+}
+
+.step-card{
+    display:inline-block;
+    width:100%;
+    max-width:390px;
+    padding:22px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.11);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.16);
+    box-shadow:0 10px 35px rgba(0,0,0,0.18);
+    transition:0.3s;
+}
+
+.step-card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.17);
+}
+
+.number{
+    position:absolute;
+    top:25px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#c471ed,#f78fb3);
+    border:4px solid #4b176d;
+    font-weight:bold;
+    z-index:2;
+}
+
+.step:nth-child(odd) .number{
+    right:-22px;
+}
+
+.step:nth-child(even) .number{
+    left:-22px;
+}
+
+.icon{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.step-card h3{
+    color:#f8d5ff;
+    margin-bottom:8px;
+}
+
+.step-card p{
+    color:#dfd0e7;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.status{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.10);
+    color:#f7c5ff;
+    font-size:12px;
+}
+
+/* FOOTER BOX */
+
+.next-step{
+    margin-top:35px;
+    padding:28px;
+    text-align:center;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(196,113,237,0.25),
+        rgba(247,143,179,0.20)
+    );
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.next-step h2{
+    margin-bottom:10px;
+}
+
+.next-step p{
+    color:#eadcf2;
+    margin-bottom:18px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    padding:12px 22px;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    h1{
+        font-size:34px;
+    }
+
+    .roadmap::before{
+        left:22px;
+        transform:none;
+    }
+
+    .step,
+    .step:nth-child(odd),
+    .step:nth-child(even){
+        width:100%;
+        left:0;
+        text-align:left;
+        padding-left:60px;
+        padding-right:0;
+    }
+
+    .step:nth-child(odd) .number,
+    .step:nth-child(even) .number{
+        left:0;
+        right:auto;
+    }
+
+    .step-card{
+        max-width:100%;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+
+    nav a{
+        margin-left:8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="profile.html">Profile</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="hero">
+
+        <div class="badge">🧭 Smart Career Journey</div>
+
+        <h1>Career Roadmap</h1>
+
+        <p>
+            Follow a clear step-by-step journey from
+            learning skills to building your career.
+        </p>
+
+    </div>
+
+
+    <!-- CAREER SELECTOR -->
+
+    <div class="selector">
+
+        <h2>🎯 Choose Your Career</h2>
+
+        <select id="careerSelect"
+                onchange="changeCareer()">
+
+            <option value="software">
+                Software Developer
+            </option>
+
+            <option value="data">
+                Data Analyst
+            </option>
+
+            <option value="design">
+                UI/UX Designer
+            </option>
+
+            <option value="cyber">
+                Cyber Security
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- ROADMAP -->
+
+    <div class="roadmap" id="roadmap">
+
+        <div class="step">
+
+            <div class="number">1</div>
+
+            <div class="step-card">
+
+                <div class="icon">🌱</div>
+
+                <h3>Build Your Foundation</h3>
+
+                <p>
+                    Learn the basic concepts and
+                    understand how technology works.
+                </p>
+
+                <span class="status">
+                    Beginner Level
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">2</div>
+
+            <div class="step-card">
+
+                <div class="icon">💻</div>
+
+                <h3>Learn Core Skills</h3>
+
+                <p>
+                    Develop important programming,
+                    technical and problem-solving skills.
+                </p>
+
+                <span class="status">
+                    Skill Development
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">3</div>
+
+            <div class="step-card">
+
+                <div class="icon">🛠️</div>
+
+                <h3>Practice & Build Projects</h3>
+
+                <p>
+                    Apply your knowledge by creating
+                    real-world projects.
+                </p>
+
+                <span class="status">
+                    Practice
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">4</div>
+
+            <div class="step-card">
+
+                <div class="icon">🚀</div>
+
+                <h3>Build Your Portfolio</h3>
+
+                <p>
+                    Showcase your projects, skills and
+                    achievements in a professional portfolio.
+                </p>
+
+                <span class="status">
+                    Portfolio
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">5</div>
+
+            <div class="step-card">
+
+                <div class="icon">🎤</div>
+
+                <h3>Prepare for Interviews</h3>
+
+                <p>
+                    Practice technical questions,
+                    aptitude and communication skills.
+                </p>
+
+                <span class="status">
+                    Job Preparation
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">6</div>
+
+            <div class="step-card">
+
+                <div class="icon">💼</div>
+
+                <h3>Apply for Opportunities</h3>
+
+                <p>
+                    Explore suitable jobs and internships
+                    based on your skills.
+                </p>
+
+                <span class="status">
+                    Career Opportunity
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEXT STEP -->
+
+    <div class="next-step">
+
+        <h2>✨ Ready for the Next Step?</h2>
+
+        <p>
+            Check your skills and continue building
+            your career journey.
+        </p>
+
+        <a href="skill-gap-analysis.html"
+           class="btn">
+            📊 Check My Skills
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function changeCareer(){
+
+    const career =
+        document.getElementById("careerSelect").value;
+
+    const titles =
+        document.querySelectorAll(".step-card h3");
+
+    const descriptions =
+        document.querySelectorAll(".step-card p");
+
+    if(career === "software"){
+
+        titles[0].innerText =
+            "Learn Programming Basics";
+
+        titles[1].innerText =
+            "Master Programming & Web Skills";
+
+        titles[2].innerText =
+            "Build Software Projects";
+
+    }
+
+    else if(career === "data"){
+
+        titles[0].innerText =
+            "Learn Mathematics & Data Basics";
+
+        titles[1].innerText =
+            "Learn Python, SQL & Analytics";
+
+        titles[2].innerText =
+            "Build Data Analysis Projects";
+
+    }
+
+    else if(career === "design"){
+
+        titles[0].innerText =
+            "Understand Design Principles";
+
+        titles[1].innerText =
+            "Learn UI/UX & Figma";
+
+        titles[2].innerText =
+            "Build Design Case Studies";
+
+    }
+
+    else if(career === "cyber"){
+
+        titles[0].innerText =
+            "Learn Networking Basics";
+
+        titles[1].innerText =
+            "Learn Cyber Security Concepts";
+
+        titles[2].innerText =
+            "Practice Security Projects";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
