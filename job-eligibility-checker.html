@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Eligibility Checker | CAREERPATH</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.18);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:45px auto;
+}
+
+.heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    color:#eadcff;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+select,
+input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    margin-bottom:20px;
+    outline:none;
+    font-size:15px;
+}
+
+.skills-box{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.skill{
+    padding:8px 14px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.15);
+}
+
+.btn{
+    border:none;
+    padding:13px 25px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    display:none;
+}
+
+.result h2{
+    margin-bottom:15px;
+}
+
+.score{
+    font-size:42px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.status{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.missing{
+    margin-top:20px;
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.08);
+}
+
+.missing span{
+    display:inline-block;
+    padding:7px 12px;
+    margin:5px;
+    border-radius:15px;
+    background:rgba(247,143,179,0.25);
+    color:#ffd6e7;
+}
+
+.link-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:650px){
+
+    .heading h1{
+        font-size:28px;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+
+    .card{
+        padding:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="jobs.html">Jobs</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>💼 Job Eligibility Checker</h1>
+
+        <p>
+            Check whether your skills match a job requirement.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <label>
+            Select Job
+        </label>
+
+        <select id="job">
+
+            <option value="web">
+                Junior Web Developer
+            </option>
+
+            <option value="python">
+                Python Developer Intern
+            </option>
+
+            <option value="data">
+                Data Analyst Intern
+            </option>
+
+            <option value="uiux">
+                UI/UX Design Intern
+            </option>
+
+            <option value="cyber">
+                Cyber Security Intern
+            </option>
+
+        </select>
+
+
+        <label>
+            Enter Your Skills
+        </label>
+
+        <input
+            type="text"
+            id="userSkills"
+            placeholder="Example: Python, HTML, CSS, SQL"
+        >
+
+
+        <button
+            class="btn"
+            onclick="checkEligibility()">
+
+            🔍 Check Eligibility
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="card result"
+        id="result">
+
+        <h2>
+            📊 Eligibility Result
+        </h2>
+
+        <div
+            class="score"
+            id="score">
+            0%
+        </div>
+
+        <div
+            class="status"
+            id="status">
+        </div>
+
+        <p id="message"></p>
+
+
+        <div class="missing">
+
+            <strong>
+                Missing Skills:
+            </strong>
+
+            <div id="missingSkills"></div>
+
+        </div>
+
+
+        <a
+            href="skill-gap-analysis.html"
+            class="link-btn">
+
+            📈 Improve Your Skills
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const jobs = {
+
+    web: [
+        "html",
+        "css",
+        "javascript",
+        "git"
+    ],
+
+    python: [
+        "python",
+        "sql",
+        "git"
+    ],
+
+    data: [
+        "python",
+        "sql",
+        "excel",
+        "statistics"
+    ],
+
+    uiux: [
+        "figma",
+        "ui design",
+        "ux design",
+        "prototyping"
+    ],
+
+    cyber: [
+        "networking",
+        "linux",
+        "cyber security",
+        "ethical hacking"
+    ]
+
+};
+
+
+function checkEligibility(){
+
+    const job =
+        document.getElementById("job").value;
+
+    const input =
+        document.getElementById("userSkills").value
+        .toLowerCase();
+
+    const userSkills =
+        input
+        .split(",")
+        .map(skill => skill.trim())
+        .filter(skill => skill !== "");
+
+    const required =
+        jobs[job];
+
+    let matched = 0;
+
+    let missing = [];
+
+
+    required.forEach(function(skill){
+
+        if(userSkills.includes(skill)){
+
+            matched++;
+
+        }
+        else{
+
+            missing.push(skill);
+
+        }
+
+    });
+
+
+    const percentage =
+        Math.round((matched / required.length) * 100);
+
+
+    document.getElementById("score").textContent =
+        percentage + "%";
+
+
+    const status =
+        document.getElementById("status");
+
+
+    if(percentage >= 80){
+
+        status.textContent =
+            "🎉 You are highly eligible!";
+
+        status.style.color =
+            "#d8ffd8";
+
+        document.getElementById("message").textContent =
+            "Your skills match most of the requirements for this job.";
+
+    }
+    else if(percentage >= 50){
+
+        status.textContent =
+            "👍 Almost ready!";
+
+        status.style.color =
+            "#ffe5a8";
+
+        document.getElementById("message").textContent =
+            "You have some required skills. Improve the missing skills to become more job ready.";
+
+    }
+    else{
+
+        status.textContent =
+            "📚 More preparation needed";
+
+        status.style.color =
+            "#ffd0dc";
+
+        document.getElementById("message").textContent =
+            "Focus on the missing skills before applying for this job.";
+
+    }
+
+
+    const missingBox =
+        document.getElementById("missingSkills");
+
+    missingBox.innerHTML = "";
+
+
+    if(missing.length === 0){
+
+        missingBox.innerHTML =
+            "<span>🎯 No missing skills</span>";
+
+    }
+    else{
+
+        missing.forEach(function(skill){
+
+            const span =
+                document.createElement("span");
+
+            span.textContent =
+                skill;
+
+            missingBox.appendChild(span);
+
+        });
+
+    }
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+}
+
+</script>
+
+</body>
+</html>
