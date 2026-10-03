@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Question Bank | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat{
+    text-align:center;
+    background:rgba(255,255,255,0.1);
+    padding:18px;
+    border-radius:15px;
+}
+
+.stat h2{
+    color:#ffd6f6;
+}
+
+.question{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.18);
+    padding:22px;
+    border-radius:18px;
+    margin-top:18px;
+}
+
+.question h3{
+    color:#ffd6f6;
+    margin-bottom:12px;
+}
+
+.question p{
+    color:#eee;
+    line-height:1.5;
+}
+
+.category{
+    display:inline-block;
+    margin-bottom:10px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(196,113,237,0.3);
+    font-size:12px;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 16px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.answer{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(0,0,0,0.2);
+    color:#f5e8ff;
+    line-height:1.5;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    transition:0.4s;
+}
+
+.home{
+    display:inline-block;
+    margin-top:10px;
+    color:#ffd6f6;
+    text-decoration:none;
+}
+
+@media(max-width:600px){
+    .hero h1{
+        font-size:30px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>🎤 Interview Question Bank</h1>
+
+        <p>
+            Practice important interview questions for your dream career.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>🎯 Choose Your Career</h2>
+
+        <select id="career" onchange="loadQuestions()">
+
+            <option value="software">Software Developer</option>
+
+            <option value="data">Data Analyst</option>
+
+            <option value="ai">AI / Machine Learning</option>
+
+            <option value="uiux">UI/UX Designer</option>
+
+            <option value="cyber">Cyber Security</option>
+
+        </select>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <h2 id="total">0</h2>
+                <p>Total Questions</p>
+            </div>
+
+            <div class="stat">
+                <h2 id="completed">0</h2>
+                <p>Practiced</p>
+            </div>
+
+            <div class="stat">
+                <h2 id="percentage">0%</h2>
+                <p>Progress</p>
+            </div>
+
+        </div>
+
+
+        <div class="progress">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+    </div>
+
+
+    <div id="questions"></div>
+
+</div>
+
+
+<script>
+
+const questionBank = {
+
+software:[
+
+{
+q:"What is Object-Oriented Programming?",
+a:"OOP is a programming approach based on objects and classes. Its main concepts include encapsulation, inheritance, polymorphism and abstraction."
+},
+
+{
+q:"What is the difference between HTML, CSS and JavaScript?",
+a:"HTML creates the structure of a webpage, CSS controls its design and JavaScript adds interactivity and dynamic behavior."
+},
+
+{
+q:"What is a database?",
+a:"A database is an organized collection of data that can be stored, managed and retrieved efficiently."
+},
+
+{
+q:"What is a function in programming?",
+a:"A function is a reusable block of code designed to perform a particular task."
+},
+
+{
+q:"Tell me about yourself.",
+a:"Give a short introduction including your education, technical skills, projects, strengths and career goal."
+}
+
+],
+
+data:[
+
+{
+q:"What is Data Analysis?",
+a:"Data analysis is the process of inspecting, cleaning, transforming and interpreting data to discover useful information."
+},
+
+{
+q:"What is Python used for in Data Analytics?",
+a:"Python is widely used for data cleaning, analysis and visualization using libraries such as Pandas, NumPy and Matplotlib."
+},
+
+{
+q:"What is SQL?",
+a:"SQL stands for Structured Query Language. It is used to create, manage and retrieve data from relational databases."
+},
+
+{
+q:"What is data visualization?",
+a:"Data visualization represents information using charts, graphs and dashboards so that patterns can be understood easily."
+},
+
+{
+q:"Why should we hire you?",
+a:"Explain your relevant skills, willingness to learn, project experience and how you can contribute to the organization."
+}
+
+],
+
+ai:[
+
+{
+q:"What is Artificial Intelligence?",
+a:"Artificial Intelligence is the field of creating systems that can perform tasks that normally require human intelligence."
+},
+
+{
+q:"What is Machine Learning?",
+a:"Machine Learning is a branch of AI where systems learn patterns from data and use them to make predictions or decisions."
+},
+
+{
+q:"What is supervised learning?",
+a:"Supervised learning trains a model using labeled data where the expected output is already known."
+},
+
+{
+q:"What is a chatbot?",
+a:"A chatbot is a software application that communicates with users through text or voice using predefined rules or AI techniques."
+},
+
+{
+q:"What interests you about AI?",
+a:"Explain your interest in intelligent systems, problem solving, automation and your willingness to learn AI technologies."
+}
+
+],
+
+uiux:[
+
+{
+q:"What is UI Design?",
+a:"UI design focuses on the visual interface of a digital product including layouts, colors, typography and components."
+},
+
+{
+q:"What is UX Design?",
+a:"UX design focuses on improving the overall user experience, usability and satisfaction when using a product."
+},
+
+{
+q:"What is a wireframe?",
+a:"A wireframe is a simple visual layout that shows the structure and placement of elements in a screen."
+},
+
+{
+q:"What is Figma?",
+a:"Figma is a collaborative design tool used for creating interfaces, prototypes and design systems."
+},
+
+{
+q:"How do you improve user experience?",
+a:"Understand user needs, simplify navigation, maintain consistency and test the design with users."
+}
+
+],
+
+cyber:[
+
+{
+q:"What is Cyber Security?",
+a:"Cyber Security is the practice of protecting systems, networks and data from unauthorized access and attacks."
+},
+
+{
+q:"What is phishing?",
+a:"Phishing is a social engineering attack where attackers try to trick users into revealing sensitive information."
+},
+
+{
+q:"What is a firewall?",
+a:"A firewall monitors and controls network traffic based on defined security rules."
+},
+
+{
+q:"What is a strong password?",
+a:"A strong password is long, unique and difficult to guess, using a combination of letters, numbers and symbols."
+},
+
+{
+q:"Why is Cyber Security important?",
+a:"It protects personal information, business data, applications and computer systems from security threats."
+}
+
+]
+
+};
+
+
+let practiced = 0;
+
+
+function loadQuestions(){
+
+    practiced = 0;
+
+    const career =
+        document.getElementById("career").value;
+
+    const questions =
+        questionBank[career];
+
+    const container =
+        document.getElementById("questions");
+
+    container.innerHTML = "";
+
+    document.getElementById("total").textContent =
+        questions.length;
+
+    questions.forEach((item,index)=>{
+
+        container.innerHTML += `
+
+        <div class="question">
+
+            <span class="category">
+                Interview Question ${index + 1}
+            </span>
+
+            <h3>❓ ${item.q}</h3>
+
+            <button onclick="showAnswer(this)">
+                👀 Show Answer
+            </button>
+
+            <div class="answer">
+                💡 <strong>Suggested Answer:</strong><br><br>
+                ${item.a}
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    updateProgress();
+
+}
+
+
+function showAnswer(button){
+
+    const answer =
+        button.nextElementSibling;
+
+    if(answer.style.display === "block"){
+
+        answer.style.display = "none";
+
+        button.textContent =
+            "👀 Show Answer";
+
+        practiced--;
+
+    }
+    else{
+
+        answer.style.display = "block";
+
+        button.textContent =
+            "✓ Practiced";
+
+        practiced++;
+
+    }
+
+    updateProgress();
+
+}
+
+
+function updateProgress(){
+
+    const career =
+        document.getElementById("career").value;
+
+    const total =
+        questionBank[career].length;
+
+    let percentage =
+        Math.round((practiced / total) * 100);
+
+    document.getElementById("completed").textContent =
+        practiced;
+
+    document.getElementById("percentage").textContent =
+        percentage + "%";
+
+    document.getElementById("progressFill").style.width =
+        percentage + "%";
+
+}
+
+
+loadQuestions();
+
+</script>
+
+</body>
+</html>
