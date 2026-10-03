@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Application Tracker | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+        radial-gradient(circle at top left,#8e44ad 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#f78fb3 0%,transparent 30%),
+        linear-gradient(135deg,#16002b,#35105c,#5d2479);
+    padding-bottom:60px;
+}
+
+/* NAVBAR */
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,.20);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.15);
+}
+
+/* CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:45px auto;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3,#ffd1e6);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#eadcff;
+    font-size:17px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.stat{
+    padding:22px;
+    text-align:center;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(15px);
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-5px);
+}
+
+.stat span{
+    display:block;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.stat h2{
+    font-size:27px;
+}
+
+.stat p{
+    color:#e8d8f5;
+    margin-top:5px;
+}
+
+/* ADD APPLICATION */
+
+.form-box{
+    padding:28px;
+    border-radius:24px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(15px);
+    margin-bottom:30px;
+}
+
+.form-box h2{
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    font-size:15px;
+    color:#35105c;
+    background:white;
+}
+
+button{
+    margin-top:18px;
+    padding:13px 25px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* APPLICATIONS */
+
+.section-title{
+    margin:30px 0 18px;
+    font-size:27px;
+}
+
+.application-list{
+    display:grid;
+    gap:18px;
+}
+
+.application{
+    padding:23px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(15px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    transition:.3s;
+}
+
+.application:hover{
+    transform:translateY(-4px);
+}
+
+.application h3{
+    margin-bottom:8px;
+}
+
+.application p{
+    color:#e7d9f3;
+    font-size:14px;
+    margin:4px 0;
+}
+
+.status{
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    display:inline-block;
+    margin-top:8px;
+}
+
+.applied{
+    background:rgba(196,113,237,.35);
+}
+
+.interview{
+    background:rgba(255,193,7,.30);
+}
+
+.selected{
+    background:rgba(76,175,80,.35);
+}
+
+.rejected{
+    background:rgba(244,67,54,.35);
+}
+
+.delete-btn{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    margin:0;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:35px;
+    border-radius:20px;
+    background:rgba(255,255,255,.08);
+    color:#eadcff;
+    display:none;
+}
+
+/* TIP */
+
+.tip{
+    margin-top:30px;
+    padding:23px;
+    border-radius:20px;
+    background:linear-gradient(
+        135deg,
+        rgba(196,113,237,.25),
+        rgba(247,143,179,.20)
+    );
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.tip h3{
+    margin-bottom:8px;
+}
+
+.tip p{
+    color:#eadcff;
+    line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    .hero h1{
+        font-size:31px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .application{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">💜 CAREERPATH</div>
+    <a href="index.html">Home</a>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>💼 Job Application Tracker</h1>
+        <p>Track your job applications and manage your career journey easily.</p>
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>📨</span>
+            <h2 id="totalCount">3</h2>
+            <p>Total Applications</p>
+        </div>
+
+        <div class="stat">
+            <span>⏳</span>
+            <h2 id="interviewCount">1</h2>
+            <p>Interviews</p>
+        </div>
+
+        <div class="stat">
+            <span>🎉</span>
+            <h2 id="selectedCount">1</h2>
+            <p>Selected</p>
+        </div>
+
+        <div class="stat">
+            <span>📈</span>
+            <h2 id="progressCount">67%</h2>
+            <p>Active Progress</p>
+        </div>
+
+    </div>
+
+
+    <!-- ADD APPLICATION -->
+
+    <div class="form-box">
+
+        <h2>➕ Add Job Application</h2>
+
+        <div class="form-grid">
+
+            <input
+                type="text"
+                id="company"
+                placeholder="🏢 Company Name"
+            >
+
+            <input
+                type="text"
+                id="job"
+                placeholder="💼 Job Role"
+            >
+
+            <input
+                type="date"
+                id="date"
+            >
+
+            <select id="status">
+                <option value="Applied">📨 Applied</option>
+                <option value="Interview">🎤 Interview</option>
+                <option value="Selected">🎉 Selected</option>
+                <option value="Rejected">❌ Rejected</option>
+            </select>
+
+        </div>
+
+        <button onclick="addApplication()">
+            ✨ Add Application
+        </button>
+
+    </div>
+
+
+    <!-- APPLICATION LIST -->
+
+    <h2 class="section-title">📋 My Applications</h2>
+
+    <div class="application-list" id="applicationList">
+
+        <div class="application">
+
+            <div>
+                <h3>🌐 ABC Technologies</h3>
+                <p>💼 Junior Web Developer</p>
+                <p>📅 03 October 2026</p>
+                <span class="status applied">📨 Applied</span>
+            </div>
+
+            <button class="delete-btn"
+                    onclick="deleteApplication(this)">
+                🗑️ Remove
+            </button>
+
+        </div>
+
+
+        <div class="application">
+
+            <div>
+                <h3>🐍 Tech Solutions</h3>
+                <p>💼 Python Developer Intern</p>
+                <p>📅 01 October 2026</p>
+                <span class="status interview">🎤 Interview</span>
+            </div>
+
+            <button class="delete-btn"
+                    onclick="deleteApplication(this)">
+                🗑️ Remove
+            </button>
+
+        </div>
+
+
+        <div class="application">
+
+            <div>
+                <h3>🤖 Future AI Labs</h3>
+                <p>💼 AI/ML Intern</p>
+                <p>📅 28 September 2026</p>
+                <span class="status selected">🎉 Selected</span>
+            </div>
+
+            <button class="delete-btn"
+                    onclick="deleteApplication(this)">
+                🗑️ Remove
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="empty" id="emptyMessage">
+        📭 No applications found.<br>
+        Add your first job application above!
+    </div>
+
+
+    <!-- TIP -->
+
+    <div class="tip">
+
+        <h3>💡 CareerPath Tip</h3>
+
+        <p>
+            Keep your job applications organized. Update your status
+            whenever you receive an interview call or job result.
+            This helps you understand your career progress clearly. ✨
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addApplication(){
+
+    const company =
+        document.getElementById("company").value.trim();
+
+    const job =
+        document.getElementById("job").value.trim();
+
+    const date =
+        document.getElementById("date").value;
+
+    const status =
+        document.getElementById("status").value;
+
+
+    if(company === "" || job === "" || date === ""){
+
+        alert("Please fill all the details! 🌼");
+
+        return;
+    }
+
+
+    const list =
+        document.getElementById("applicationList");
+
+
+    const formattedDate =
+        new Date(date).toLocaleDateString(
+            "en-GB",
+            {
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        );
+
+
+    let statusClass = "applied";
+    let statusIcon = "📨";
+
+    if(status === "Interview"){
+        statusClass = "interview";
+        statusIcon = "🎤";
+    }
+
+    if(status === "Selected"){
+        statusClass = "selected";
+        statusIcon = "🎉";
+    }
+
+    if(status === "Rejected"){
+        statusClass = "rejected";
+        statusIcon = "❌";
+    }
+
+
+    const application =
+        document.createElement("div");
+
+    application.className = "application";
+
+
+    application.innerHTML = `
+
+        <div>
+
+            <h3>🏢 ${company}</h3>
+
+            <p>💼 ${job}</p>
+
+            <p>📅 ${formattedDate}</p>
+
+            <span class="status ${statusClass}">
+                ${statusIcon} ${status}
+            </span>
+
+        </div>
+
+        <button
+            class="delete-btn"
+            onclick="deleteApplication(this)">
+            🗑️ Remove
+        </button>
+
+    `;
+
+
+    list.appendChild(application);
+
+
+    document.getElementById("company").value = "";
+    document.getElementById("job").value = "";
+    document.getElementById("date").value = "";
+
+    updateStats();
+}
+
+
+function deleteApplication(button){
+
+    button.parentElement.remove();
+
+    updateStats();
+
+}
+
+
+function updateStats(){
+
+    const applications =
+        document.querySelectorAll(".application");
+
+    const total =
+        applications.length;
+
+
+    let interviews = 0;
+    let selected = 0;
+
+
+    applications.forEach(app => {
+
+        const text =
+            app.innerText;
+
+        if(text.includes("Interview")){
+            interviews++;
+        }
+
+        if(text.includes("Selected")){
+            selected++;
+        }
+
+    });
+
+
+    document.getElementById("totalCount").innerText =
+        total;
+
+    document.getElementById("interviewCount").innerText =
+        interviews;
+
+    document.getElementById("selectedCount").innerText =
+        selected;
+
+
+    let progress = 0;
+
+    if(total > 0){
+        progress =
+            Math.round(
+                ((interviews + selected) / total) * 100
+            );
+    }
+
+    document.getElementById("progressCount").innerText =
+        progress + "%";
+
+
+    const empty =
+        document.getElementById("emptyMessage");
+
+    if(total === 0){
+        empty.style.display = "block";
+    }
+    else{
+        empty.style.display = "none";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
