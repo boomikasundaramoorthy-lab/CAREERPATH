@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Career Mentor | CAREERPATH</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+    radial-gradient(circle at top left,#8e44ad 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#f78fb3 0%,transparent 30%),
+    linear-gradient(135deg,#10001f,#260044,#4b176d);
+}
+
+/* NAVBAR */
+
+.navbar{
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.20);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    color:#f4d9ff;
+}
+
+.home{
+    text-decoration:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.12);
+}
+
+/* MAIN */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:35px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#f7b6ef;
+}
+
+.hero p{
+    color:#dfcfea;
+    line-height:1.6;
+}
+
+/* MENTOR BOX */
+
+.mentor-box{
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.11);
+    border:1px solid rgba(255,255,255,0.16);
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+}
+
+.mentor-box h2{
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#eadbf2;
+}
+
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+}
+
+select option{
+    color:#222;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.mentor-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+    margin-top:30px;
+}
+
+.mentor-message{
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.10);
+    margin-bottom:20px;
+}
+
+.mentor-message h2{
+    margin-bottom:10px;
+}
+
+.mentor-message p{
+    color:#eadff0;
+    line-height:1.7;
+}
+
+/* SCORE */
+
+.score-card{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.10);
+    margin-bottom:20px;
+}
+
+.score-circle{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#c471ed,#f78fb3);
+}
+
+.score-info h3{
+    margin-bottom:8px;
+}
+
+.score-info p{
+    color:#decfe7;
+}
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.card{
+    padding:22px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.card h3{
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#dfd2e6;
+    line-height:1.6;
+}
+
+.card ul{
+    padding-left:20px;
+    color:#e7d9ed;
+    line-height:1.9;
+}
+
+.tag{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(196,113,237,0.25);
+    color:#f4d8ff;
+    font-size:13px;
+}
+
+/* NEXT STEPS */
+
+.next{
+    margin-top:20px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.10);
+}
+
+.next h2{
+    margin-bottom:15px;
+}
+
+.step{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    padding:13px;
+    margin-bottom:10px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.07);
+}
+
+.number{
+    min-width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#c471ed;
+    font-weight:bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .form-grid,
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .score-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <a href="index.html" class="home">
+        Home
+    </a>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>
+            🤖 <span>AI Career Mentor</span>
+        </h1>
+
+        <p>
+            Your personal digital mentor for planning,
+            preparing and achieving your dream career.
+        </p>
+
+    </div>
+
+
+    <div class="mentor-box">
+
+        <h2>✨ Tell Your Mentor About You</h2>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>🎯 Target Career</label>
+
+                <select id="career">
+
+                    <option value="software">
+                        Software Developer
+                    </option>
+
+                    <option value="data">
+                        Data Analyst
+                    </option>
+
+                    <option value="aiml">
+                        AI / ML Engineer
+                    </option>
+
+                    <option value="uiux">
+                        UI/UX Designer
+                    </option>
+
+                    <option value="cyber">
+                        Cyber Security
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>📚 Current Level</label>
+
+                <select id="level">
+
+                    <option value="beginner">
+                        Beginner
+                    </option>
+
+                    <option value="intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="full">
+
+                <label>
+                    💡 Your Current Skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    placeholder="Example: Python, HTML, CSS, JavaScript, SQL">
+                </textarea>
+
+            </div>
+
+
+            <div class="full">
+
+                <label>
+                    🚀 What is your career goal?
+                </label>
+
+                <textarea
+                    id="goal"
+                    placeholder="Example: I want to become a software developer and get a job after graduation.">
+                </textarea>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="mentor-btn"
+            onclick="generateMentorPlan()">
+
+            ✨ Generate My Career Plan
+
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="result" id="result">
+
+
+        <div class="mentor-message">
+
+            <h2 id="welcome">
+                👋 Welcome!
+            </h2>
+
+            <p id="mentorText"></p>
+
+        </div>
+
+
+        <div class="score-card">
+
+            <div class="score-circle" id="score">
+                75%
+            </div>
+
+            <div class="score-info">
+
+                <h3>🎯 Career Readiness</h3>
+
+                <p>
+                    This score is based on your selected
+                    career, current level and entered skills.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <div class="card">
+
+                <h3>💪 Your Strengths</h3>
+
+                <ul id="strengths"></ul>
+
+                <span class="tag">
+                    Existing Skills
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>⚠️ Skills to Improve</h3>
+
+                <ul id="missing"></ul>
+
+                <span class="tag">
+                    Skill Gap
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>📚 Recommended Learning</h3>
+
+                <ul id="learning"></ul>
+
+                <span class="tag">
+                    Personalized
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>💼 Suggested Job Roles</h3>
+
+                <ul id="jobs"></ul>
+
+                <span class="tag">
+                    Career Match
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="next">
+
+            <h2>🗺️ Your Next Steps</h2>
+
+            <div id="steps"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const careerData = {
+
+    software:{
+        name:"Software Developer",
+
+        skills:["HTML","CSS","JavaScript","Python","SQL"],
+
+        learning:[
+            "Master JavaScript",
+            "Learn SQL & Database concepts",
+            "Build 2 real-world projects",
+            "Practice Git & GitHub"
+        ],
+
+        jobs:[
+            "Junior Software Developer",
+            "Web Developer",
+            "Frontend Developer",
+            "Python Developer"
+        ]
+    },
+
+
+    data:{
+        name:"Data Analyst",
+
+        skills:["Excel","SQL","Python","Statistics","Power BI"],
+
+        learning:[
+            "Learn Advanced Excel",
+            "Practice SQL",
+            "Learn Power BI",
+            "Study basic Statistics"
+        ],
+
+        jobs:[
+            "Junior Data Analyst",
+            "Business Analyst",
+            "Reporting Analyst",
+            "Data Associate"
+        ]
+    },
+
+
+    aiml:{
+        name:"AI / ML Engineer",
+
+        skills:["Python","Statistics","Machine Learning","SQL","Data Science"],
+
+        learning:[
+            "Strengthen Python",
+            "Learn Machine Learning",
+            "Study Statistics",
+            "Build ML projects"
+        ],
+
+        jobs:[
+            "AI/ML Intern",
+            "Machine Learning Engineer",
+            "Data Science Intern",
+            "AI Developer"
+        ]
+    },
+
+
+    uiux:{
+        name:"UI/UX Designer",
+
+        skills:["Figma","UI Design","UX Research","Typography","Prototyping"],
+
+        learning:[
+            "Learn Figma",
+            "Practice UI Design",
+            "Study UX Research",
+            "Create a design portfolio"
+        ],
+
+        jobs:[
+            "UI Designer",
+            "UX Designer",
+            "Product Designer",
+            "UI/UX Intern"
+        ]
+    },
+
+
+    cyber:{
+        name:"Cyber Security",
+
+        skills:["Networking","Linux","Python","Security","Ethical Hacking"],
+
+        learning:[
+            "Learn Networking",
+            "Practice Linux",
+            "Study Cyber Security basics",
+            "Learn security tools"
+        ],
+
+        jobs:[
+            "Cyber Security Intern",
+            "Security Analyst",
+            "SOC Analyst",
+            "Cyber Security Associate"
+        ]
+    }
+
+};
+
+
+function generateMentorPlan(){
+
+    const career =
+        document.getElementById("career").value;
+
+    const level =
+        document.getElementById("level").value;
+
+    const skillsText =
+        document.getElementById("skills").value;
+
+    const goal =
+        document.getElementById("goal").value;
+
+    const data = careerData[career];
+
+
+    document.getElementById("result").style.display="block";
+
+
+    document.getElementById("welcome").innerText =
+        "🤖 Your AI Career Mentor Plan";
+
+
+    document.getElementById("mentorText").innerText =
+        "Based on your selected goal, your target career is " +
+        data.name +
+        ". Your current level is " +
+        level +
+        ". Follow the personalized learning and career steps below to move closer to your goal.";
+
+
+    /* SCORE */
+
+    let score = 60;
+
+    if(level === "intermediate"){
+        score = 72;
+    }
+
+    if(level === "advanced"){
+        score = 84;
+    }
+
+    if(skillsText.trim().length > 20){
+        score += 6;
+    }
+
+    if(goal.trim().length > 20){
+        score += 5;
+    }
+
+    if(score > 95){
+        score = 95;
+    }
+
+    document.getElementById("score").innerText =
+        score + "%";
+
+
+    /* STRENGTHS */
+
+    const strengths =
+        document.getElementById("strengths");
+
+    strengths.innerHTML="";
+
+    const entered =
+        skillsText
+        .split(",")
+        .map(x => x.trim())
+        .filter(x => x);
+
+    if(entered.length === 0){
+
+        strengths.innerHTML =
+            "<li>Start building your first career skills</li>";
+
+    }else{
+
+        entered.slice(0,5).forEach(skill => {
+
+            const li =
+                document.createElement("li");
+
+            li.innerText = skill;
+
+            strengths.appendChild(li);
+
+        });
+
+    }
+
+
+    /* MISSING SKILLS */
+
+    const missing =
+        document.getElementById("missing");
+
+    missing.innerHTML="";
+
+    data.skills.slice(0,4).forEach(skill => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText =
+            "Improve " + skill;
+
+        missing.appendChild(li);
+
+    });
+
+
+    /* LEARNING */
+
+    const learning =
+        document.getElementById("learning");
+
+    learning.innerHTML="";
+
+    data.learning.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = item;
+
+        learning.appendChild(li);
+
+    });
+
+
+    /* JOBS */
+
+    const jobs =
+        document.getElementById("jobs");
+
+    jobs.innerHTML="";
+
+    data.jobs.forEach(job => {
+
+        const li =
+            document.createElement("li");
+
+        li.innerText = job;
+
+        jobs.appendChild(li);
+
+    });
+
+
+    /* STEPS */
+
+    const steps =
+        document.getElementById("steps");
+
+    steps.innerHTML="";
+
+    const stepData = [
+
+        "Complete your skill-gap learning plan",
+
+        "Build at least 2 career-related projects",
+
+        "Create and improve your professional resume",
+
+        "Practice technical interview questions",
+
+        "Apply for matching internships and jobs"
+
+    ];
+
+
+    stepData.forEach((step,index)=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className="step";
+
+        div.innerHTML =
+            "<div class='number'>" +
+            (index+1) +
+            "</div>" +
+            "<div>" +
+            step +
+            "</div>";
+
+        steps.appendChild(div);
+
+    });
+
+
+    window.scrollTo({
+
+        top:document.getElementById("result").offsetTop - 20,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
