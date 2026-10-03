@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Job Match | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.card{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin:15px 0 8px;
+    font-weight:bold;
+}
+
+textarea,select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    text-align:center;
+}
+
+.score{
+    font-size:55px;
+    font-weight:bold;
+    color:#ffd6f6;
+    margin:15px 0;
+}
+
+.message{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-top:20px;
+}
+
+.skill-box{
+    padding:20px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.1);
+}
+
+.skill-box h3{
+    margin-bottom:12px;
+    color:#ffd6f6;
+}
+
+.tag{
+    display:inline-block;
+    padding:7px 11px;
+    margin:4px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.match{
+    background:rgba(100,255,160,0.2);
+}
+
+.missing{
+    background:rgba(255,100,130,0.2);
+}
+
+.suggestion{
+    margin-top:20px;
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.08);
+    line-height:1.6;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:600px){
+    .hero h1{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>📄 Resume–Job Match Analyzer</h1>
+
+        <p>
+            Check how well your resume skills match a job.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <label>💼 Select Job</label>
+
+        <select id="job">
+
+            <option value="web">
+                Junior Web Developer
+            </option>
+
+            <option value="python">
+                Python Developer Intern
+            </option>
+
+            <option value="data">
+                Data Analyst Intern
+            </option>
+
+            <option value="ai">
+                AI / ML Intern
+            </option>
+
+            <option value="cyber">
+                Cyber Security Intern
+            </option>
+
+        </select>
+
+
+        <label>📄 Enter Your Resume Skills</label>
+
+        <textarea id="resume"
+        placeholder="Example: Python, HTML, CSS, JavaScript, SQL, Communication"></textarea>
+
+
+        <button onclick="analyzeResume()">
+            🔍 Analyze Resume
+        </button>
+
+    </div>
+
+
+    <div id="result" class="card hidden">
+
+        <div class="result">
+
+            <h2>🎯 Resume Match Score</h2>
+
+            <div class="score" id="score">
+                0%
+            </div>
+
+            <div class="message" id="message"></div>
+
+        </div>
+
+
+        <div class="skills">
+
+            <div class="skill-box">
+
+                <h3>✅ Matching Skills</h3>
+
+                <div id="matched"></div>
+
+            </div>
+
+
+            <div class="skill-box">
+
+                <h3>📚 Missing Skills</h3>
+
+                <div id="missing"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="suggestion">
+
+            <h3>💡 Suggestions</h3>
+
+            <p id="suggestion"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const jobs = {
+
+web:[
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Git",
+    "Communication"
+],
+
+python:[
+    "Python",
+    "SQL",
+    "Git",
+    "Problem Solving",
+    "Communication"
+],
+
+data:[
+    "Python",
+    "SQL",
+    "Excel",
+    "Pandas",
+    "Data Analysis"
+],
+
+ai:[
+    "Python",
+    "Machine Learning",
+    "Pandas",
+    "NumPy",
+    "Problem Solving"
+],
+
+cyber:[
+    "Cyber Security",
+    "Networking",
+    "Linux",
+    "Python",
+    "Problem Solving"
+]
+
+};
+
+
+function analyzeResume(){
+
+    const job =
+        document.getElementById("job").value;
+
+    const resume =
+        document.getElementById("resume")
+        .value
+        .toLowerCase();
+
+    if(resume.trim() === ""){
+
+        alert("Please enter your resume skills.");
+
+        return;
+    }
+
+
+    const required =
+        jobs[job];
+
+    let matched = [];
+
+    let missing = [];
+
+
+    required.forEach(skill => {
+
+        if(resume.includes(skill.toLowerCase())){
+
+            matched.push(skill);
+
+        }
+        else{
+
+            missing.push(skill);
+
+        }
+
+    });
+
+
+    const percentage =
+        Math.round(
+            (matched.length / required.length) * 100
+        );
+
+
+    document.getElementById("score")
+        .textContent = percentage + "%";
+
+
+    let message = "";
+
+    if(percentage >= 80){
+
+        message =
+        "🔥 Excellent Match! Your skills strongly match this job.";
+
+    }
+    else if(percentage >= 60){
+
+        message =
+        "✨ Good Match! A few more skills can improve your profile.";
+
+    }
+    else if(percentage >= 40){
+
+        message =
+        "📚 Almost Ready! Focus on the missing skills.";
+
+    }
+    else{
+
+        message =
+        "🚀 Keep Learning! Build the required skills before applying.";
+
+    }
+
+
+    document.getElementById("message")
+        .textContent = message;
+
+
+    const matchedBox =
+        document.getElementById("matched");
+
+    matchedBox.innerHTML = "";
+
+    matched.forEach(skill => {
+
+        matchedBox.innerHTML +=
+        `<span class="tag match">${skill}</span>`;
+
+    });
+
+
+    if(matched.length === 0){
+
+        matchedBox.innerHTML =
+        "<p>No matching skills found.</p>";
+
+    }
+
+
+    const missingBox =
+        document.getElementById("missing");
+
+    missingBox.innerHTML = "";
+
+    missing.forEach(skill => {
+
+        missingBox.innerHTML +=
+        `<span class="tag missing">${skill}</span>`;
+
+    });
+
+
+    document.getElementById("suggestion")
+        .textContent =
+        missing.length === 0
+        ? "Your listed skills match all the required skills. Keep your projects and resume updated."
+        : "Learn the missing skills, add relevant projects to your resume, and practice interview questions before applying.";
+
+
+    document.getElementById("result")
+        .classList.remove("hidden");
+
+
+    document.getElementById("result")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+</script>
+
+</body>
+</html>
