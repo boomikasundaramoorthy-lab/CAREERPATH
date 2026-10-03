@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Builder | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(0,0,0,0.18);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.heading{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.heading p{
+    color:#eadcff;
+}
+
+.builder{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.panel,
+.resume{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.panel h2,
+.resume h2{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin:15px 0 7px;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.btn{
+    border:none;
+    padding:12px 20px;
+    border-radius:25px;
+    color:white;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.resume{
+    background:#fff;
+    color:#2d1640;
+}
+
+.resume-header{
+    text-align:center;
+    padding-bottom:18px;
+    border-bottom:2px solid #ddd;
+}
+
+.resume-header h1{
+    font-size:30px;
+    margin-bottom:6px;
+}
+
+.resume-header p{
+    color:#704c80;
+}
+
+.resume-section{
+    margin-top:22px;
+}
+
+.resume-section h3{
+    color:#7b3f98;
+    border-bottom:1px solid #ddd;
+    padding-bottom:5px;
+    margin-bottom:10px;
+}
+
+.resume-section p{
+    line-height:1.6;
+    white-space:pre-line;
+}
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.skill{
+    background:#eee0f7;
+    color:#66377c;
+    padding:6px 12px;
+    border-radius:15px;
+    font-size:13px;
+}
+
+.success{
+    display:none;
+    margin-top:15px;
+    color:#d9ffd9;
+    font-weight:bold;
+}
+
+@media(max-width:800px){
+    .builder{
+        grid-template-columns:1fr;
+    }
+
+    .heading h1{
+        font-size:28px;
+    }
+
+    nav{
+        padding:18px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CAREERPATH
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>📄 Resume Builder</h1>
+
+        <p>
+            Create your professional resume easily.
+        </p>
+
+    </div>
+
+    <div class="builder">
+
+        <!-- FORM -->
+
+        <div class="panel">
+
+            <h2>✏️ Enter Your Details</h2>
+
+            <label>Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name">
+
+            <label>Career / Job Title</label>
+            <input
+                type="text"
+                id="role"
+                placeholder="Example: Software Developer">
+
+            <label>Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email">
+
+            <label>Phone</label>
+            <input
+                type="text"
+                id="phone"
+                placeholder="Enter your phone">
+
+            <label>Career Objective</label>
+            <textarea
+                id="objective"
+                placeholder="Write your career objective"></textarea>
+
+            <label>Education</label>
+            <textarea
+                id="education"
+                placeholder="Example: BCA - 2027"></textarea>
+
+            <label>Skills</label>
+            <input
+                type="text"
+                id="skills"
+                placeholder="Python, HTML, CSS, JavaScript">
+
+            <label>Projects</label>
+            <textarea
+                id="projects"
+                placeholder="Describe your projects"></textarea>
+
+            <label>Certifications</label>
+            <textarea
+                id="certifications"
+                placeholder="Enter your certifications"></textarea>
+
+            <button
+                class="btn"
+                onclick="generateResume()">
+                ✨ Generate Resume
+            </button>
+
+            <div
+                class="success"
+                id="success">
+                ✅ Resume updated successfully!
+            </div>
+
+        </div>
+
+
+        <!-- RESUME PREVIEW -->
+
+        <div class="resume">
+
+            <div class="resume-header">
+
+                <h1 id="previewName">
+                    Your Name
+                </h1>
+
+                <p id="previewRole">
+                    Your Career Title
+                </p>
+
+                <p id="previewContact">
+                    email@example.com | Phone
+                </p>
+
+            </div>
+
+
+            <div class="resume-section">
+
+                <h3>PROFILE</h3>
+
+                <p id="previewObjective">
+                    Your career objective will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="resume-section">
+
+                <h3>EDUCATION</h3>
+
+                <p id="previewEducation">
+                    Your education details will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="resume-section">
+
+                <h3>SKILLS</h3>
+
+                <div
+                    class="skills"
+                    id="previewSkills">
+
+                    <span class="skill">
+                        Your Skills
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="resume-section">
+
+                <h3>PROJECTS</h3>
+
+                <p id="previewProjects">
+                    Your projects will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="resume-section">
+
+                <h3>CERTIFICATIONS</h3>
+
+                <p id="previewCertifications">
+                    Your certifications will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generateResume(){
+
+    const name =
+        document.getElementById("name").value;
+
+    const role =
+        document.getElementById("role").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const objective =
+        document.getElementById("objective").value;
+
+    const education =
+        document.getElementById("education").value;
+
+    const skills =
+        document.getElementById("skills").value;
+
+    const projects =
+        document.getElementById("projects").value;
+
+    const certifications =
+        document.getElementById("certifications").value;
+
+
+    document.getElementById("previewName").textContent =
+        name || "Your Name";
+
+    document.getElementById("previewRole").textContent =
+        role || "Your Career Title";
+
+    document.getElementById("previewContact").textContent =
+        (email || "email@example.com") +
+        " | " +
+        (phone || "Phone");
+
+
+    document.getElementById("previewObjective").textContent =
+        objective ||
+        "Your career objective will appear here.";
+
+
+    document.getElementById("previewEducation").textContent =
+        education ||
+        "Your education details will appear here.";
+
+
+    document.getElementById("previewProjects").textContent =
+        projects ||
+        "Your projects will appear here.";
+
+
+    document.getElementById("previewCertifications").textContent =
+        certifications ||
+        "Your certifications will appear here.";
+
+
+    const skillsContainer =
+        document.getElementById("previewSkills");
+
+    skillsContainer.innerHTML = "";
+
+    const skillList =
+        skills.split(",");
+
+    skillList.forEach(function(skill){
+
+        if(skill.trim() !== ""){
+
+            const span =
+                document.createElement("span");
+
+            span.className = "skill";
+
+            span.textContent =
+                skill.trim();
+
+            skillsContainer.appendChild(span);
+        }
+
+    });
+
+
+    document.getElementById("success").style.display =
+        "block";
+
+}
+
+</script>
+
+</body>
+</html>
