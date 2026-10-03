@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Goal Planner | CAREERPATH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#16002b,#4b176d,#8e44ad);
+    color:white;
+    padding-bottom:50px;
+}
+
+nav{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.hero{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#eadcff;
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin:15px 0 8px;
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.goal{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.goal h2{
+    color:#ffd6f6;
+    margin-bottom:10px;
+}
+
+.progress-bar{
+    width:100%;
+    height:15px;
+    background:rgba(255,255,255,.15);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#c471ed,#f78fb3);
+    transition:.4s;
+}
+
+.milestones{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-top:20px;
+}
+
+.milestone{
+    padding:22px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:18px;
+}
+
+.milestone h3{
+    color:#ffd6f6;
+    margin-bottom:10px;
+}
+
+.milestone p{
+    color:#eee;
+    line-height:1.5;
+}
+
+.complete{
+    margin-top:15px;
+    width:auto;
+    padding:9px 15px;
+    font-size:13px;
+}
+
+.done{
+    border:1px solid rgba(120,255,180,.5);
+    background:rgba(120,255,180,.12);
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:600px){
+    .hero h1{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">CAREERPATH</div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🎯 Career Goal Planner</h1>
+        <p>Set your career goal and track every milestone.</p>
+    </div>
+
+    <div class="card">
+
+        <label>🚀 Your Career Goal</label>
+
+        <input
+            type="text"
+            id="goal"
+            placeholder="Example: Become a Software Developer"
+        >
+
+        <label>📅 Target Year</label>
+
+        <select id="year">
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029</option>
+            <option>2030</option>
+        </select>
+
+        <button onclick="createPlan()">
+            ✨ Create My Career Plan
+        </button>
+
+    </div>
+
+    <div id="plan" class="hidden">
+
+        <div class="card goal">
+
+            <h2 id="goalTitle">
+                My Career Goal
+            </h2>
+
+            <p id="targetText">
+                Target Year
+            </p>
+
+            <div class="progress-bar">
+                <div
+                    class="progress"
+                    id="progress"
+                ></div>
+            </div>
+
+            <p
+                id="progressText"
+                style="margin-top:10px;color:#ffd6f6;"
+            >
+                0% Completed
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🗺️ Career Milestones</h2>
+
+            <div
+                class="milestones"
+                id="milestones"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const milestoneData = [
+
+{
+    title:"🎓 Education",
+    text:"Complete your degree and strengthen your academic foundation."
+},
+
+{
+    title:"🧠 Learn Skills",
+    text:"Learn the technical and professional skills required for your target career."
+},
+
+{
+    title:"💻 Build Projects",
+    text:"Create real-world projects and add them to your portfolio."
+},
+
+{
+    title:"📄 Prepare Resume",
+    text:"Create a professional resume highlighting your skills and projects."
+},
+
+{
+    title:"🎤 Interview Practice",
+    text:"Practice technical and HR questions and improve your confidence."
+},
+
+{
+    title:"💼 Apply for Jobs",
+    text:"Find suitable jobs and internships and start applying."
+}
+
+];
+
+let completed = 0;
+
+function createPlan(){
+
+    const goal =
+        document.getElementById("goal").value.trim();
+
+    const year =
+        document.getElementById("year").value;
+
+    if(goal === ""){
+
+        alert("Please enter your career goal.");
+
+        return;
+    }
+
+    completed = 0;
+
+    document.getElementById("goalTitle")
+        .textContent = "🎯 " + goal;
+
+    document.getElementById("targetText")
+        .textContent = "Target Year: " + year;
+
+    const container =
+        document.getElementById("milestones");
+
+    container.innerHTML = "";
+
+    milestoneData.forEach((item,index)=>{
+
+        container.innerHTML += `
+
+        <div class="milestone" id="milestone${index}">
+
+            <h3>${item.title}</h3>
+
+            <p>${item.text}</p>
+
+            <button
+                class="complete"
+                onclick="completeMilestone(${index},this)"
+            >
+                ✓ Mark Complete
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    updateProgress();
+
+    document.getElementById("plan")
+        .classList.remove("hidden");
+
+    document.getElementById("plan")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+function completeMilestone(index,button){
+
+    const box =
+        document.getElementById("milestone"+index);
+
+    if(box.classList.contains("done")){
+
+        box.classList.remove("done");
+
+        button.textContent =
+            "✓ Mark Complete";
+
+        completed--;
+
+    }
+    else{
+
+        box.classList.add("done");
+
+        button.textContent =
+            "✓ Completed";
+
+        completed++;
+
+    }
+
+    updateProgress();
+}
+
+function updateProgress(){
+
+    const percentage =
+        Math.round(
+            (completed / milestoneData.length) * 100
+        );
+
+    document.getElementById("progress")
+        .style.width = percentage + "%";
+
+    document.getElementById("progressText")
+        .textContent =
+        percentage + "% Completed";
+
+}
+
+</script>
+
+</body>
+</html>
