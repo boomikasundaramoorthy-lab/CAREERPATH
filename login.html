@@ -4,179 +4,851 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CAREERPATH | Login</title>
+    <title>Login | CAREERPATH</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-
+            justify-content: center;
+            padding: 30px;
+            color: white;
             background:
-                radial-gradient(circle at top left, #e8dcff, transparent 40%),
-                radial-gradient(circle at bottom right, #ffd8ed, transparent 40%),
-                #f7f5ff;
+                radial-gradient(circle at top left, #8e44ad 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #c471ed 0%, transparent 35%),
+                linear-gradient(135deg, #16002b, #32104f, #4b176d);
+            overflow-x: hidden;
         }
 
-        .login-container {
-            width: 380px;
-            padding: 40px;
+        body::before {
+            content: "";
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(247, 143, 179, 0.18);
+            top: -100px;
+            right: -80px;
+            filter: blur(5px);
+            z-index: -1;
+        }
 
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 25px;
+        body::after {
+            content: "";
+            position: fixed;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(196, 113, 237, 0.18);
+            bottom: -100px;
+            left: -80px;
+            filter: blur(5px);
+            z-index: -1;
+        }
 
-            box-shadow: 0 20px 50px rgba(80, 60, 150, 0.15);
+        .login-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .welcome-section {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(142, 68, 173, 0.72),
+                    rgba(75, 23, 109, 0.58)
+                );
         }
 
         .logo {
-            text-align: center;
             font-size: 30px;
-            font-weight: bold;
-            color: #7046e8;
-            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 45px;
         }
 
         .logo span {
-            color: #e85ca8;
+            color: #f78fb3;
         }
 
-        .welcome {
-            text-align: center;
-            color: #77718b;
-            margin-bottom: 30px;
+        .welcome-section h1 {
+            font-size: 46px;
+            line-height: 1.15;
+            margin-bottom: 22px;
         }
 
-        h2 {
-            text-align: center;
-            color: #342d52;
+        .welcome-section h1 span {
+            background: linear-gradient(90deg, #f78fb3, #c471ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 430px;
+        }
+
+        .feature-list {
+            margin-top: 35px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .login-section {
+            padding: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 0, 25, 0.28);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .login-card h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .login-card .subtitle {
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .message {
+            display: none;
+            padding: 13px 15px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.success {
+            display: block;
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(46, 204, 113, 0.35);
+            color: #9ff3bd;
+        }
+
+        .message.error {
+            display: block;
+            background: rgba(255, 82, 82, 0.14);
+            border: 1px solid rgba(255, 82, 82, 0.35);
+            color: #ffb3b3;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 17px;
+            opacity: 0.65;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 15px 16px 15px 45px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.38);
+        }
+
+        .input-box input:focus {
+            border-color: #c471ed;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(196, 113, 237, 0.12);
+        }
+
+        .password-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 7px;
-            color: #4b4663;
-            font-size: 14px;
-            font-weight: bold;
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 13px;
         }
 
-        input {
-            width: 100%;
-            padding: 14px;
-
-            border: 1px solid #ddd6f5;
-            border-radius: 12px;
-            outline: none;
-
-            margin-bottom: 18px;
-            font-size: 15px;
+        .remember input {
+            accent-color: #c471ed;
         }
 
-        input:focus {
-            border-color: #7146e8;
+        .forgot {
+            color: #e4a7ff;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .forgot:hover {
+            color: #f78fb3;
         }
 
         .login-btn {
             width: 100%;
-            padding: 14px;
-
+            padding: 15px;
             border: none;
-            border-radius: 25px;
-
-            background: linear-gradient(135deg, #7146e8, #d34fa5);
-
+            border-radius: 15px;
+            cursor: pointer;
             color: white;
             font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8e44ad, #c471ed, #f78fb3);
+            box-shadow: 0 10px 25px rgba(196, 113, 237, 0.25);
+            transition: 0.3s ease;
         }
 
         .login-btn:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(196, 113, 237, 0.35);
         }
 
-        .register {
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .register-text {
             text-align: center;
-            margin-top: 22px;
-            color: #77718b;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.58);
             font-size: 14px;
         }
 
-        .register a {
-            color: #7146e8;
+        .register-text a {
+            color: #f78fb3;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
         }
 
-        .back {
+        .register-text a:hover {
+            color: #d9a1ff;
+        }
+
+        .back-home {
             display: block;
             text-align: center;
             margin-top: 18px;
-
-            color: #7146e8;
+            color: rgba(255, 255, 255, 0.55);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
+        }
+
+        .back-home:hover {
+            color: white;
+        }
+
+        .security-note {
+            margin-top: 25px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 11px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .loading {
+            display: none;
+            width: 17px;
+            height: 17px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 850px) {
+            body {
+                padding: 18px;
+            }
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .welcome-section {
+                padding: 40px 30px;
+            }
+
+            .welcome-section h1 {
+                font-size: 36px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .login-section {
+                padding: 40px 30px;
+            }
+
+            .feature-list {
+                margin-top: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-section,
+            .login-section {
+                padding: 30px 20px;
+            }
+
+            .welcome-section h1 {
+                font-size: 30px;
+            }
+
+            .login-card h2 {
+                font-size: 28px;
+            }
+
+            .password-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-container">
+    <div class="login-wrapper">
 
-        <div class="logo">
-            CAREER<span>PATH</span>
-        </div>
+        <!-- LEFT SIDE -->
+        <section class="welcome-section">
 
-        <p class="welcome">
-            Smart Career Guidance & Opportunity Portal
-        </p>
+            <div class="logo">
+                CAREER<span>PATH</span>
+            </div>
 
-        <h2>Welcome Back 👋</h2>
+            <h1>
+                Welcome<br>
+                <span>Back!</span>
+            </h1>
 
-        <form>
+            <p>
+                Continue your career journey with CAREERPATH.
+                Discover opportunities, improve your skills and
+                build a successful future.
+            </p>
 
-            <label>Email Address</label>
+            <div class="feature-list">
 
-            <input
-                type="email"
-                placeholder="Enter your email"
-                required
-            >
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <span>Personalized Career Guidance</span>
+                </div>
 
-            <label>Password</label>
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <span>Jobs & Internship Opportunities</span>
+                </div>
 
-            <input
-                type="password"
-                placeholder="Enter your password"
-                required
-            >
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <span>Skills & Learning Resources</span>
+                </div>
 
-            <button class="login-btn" type="submit">
-                Login
-            </button>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <span>Build Your Career Future</span>
+                </div>
 
-        </form>
+            </div>
 
-        <p class="register">
-            Don't have an account?
-            <a href="register.html">Create Account</a>
-        </p>
+        </section>
 
-        <a class="back" href="index.html">
-            ← Back to Home
-        </a>
+
+        <!-- RIGHT SIDE -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <h2>Sign In</h2>
+
+                <p class="subtitle">
+                    Login to continue to your CAREERPATH account.
+                </p>
+
+
+                <div id="message" class="message"></div>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>✉️</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span>🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="password-row">
+
+                        <label class="remember">
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+                            Remember me
+                        </label>
+
+                        <a
+                            href="#"
+                            class="forgot"
+                            onclick="forgotPassword(event)"
+                        >
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-btn"
+                        id="loginButton"
+                    >
+
+                        <span id="buttonText">
+                            Login to CAREERPATH
+                        </span>
+
+                        <span
+                            class="loading"
+                            id="loading"
+                        ></span>
+
+                    </button>
+
+                </form>
+
+
+                <p class="register-text">
+                    Don't have an account?
+                    <a href="register.html">
+                        Create Account
+                    </a>
+                </p>
+
+
+                <a
+                    href="index.html"
+                    class="back-home"
+                >
+                    ← Back to Home
+                </a>
+
+
+                <div class="security-note">
+                    🔐 Your login information is securely processed
+                    through the CAREERPATH backend API.
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
 
+
+    <script>
+
+        /*
+         * =====================================================
+         * CAREERPATH LOGIN - BACKEND CONNECTION
+         * =====================================================
+         *
+         * IMPORTANT:
+         *
+         * GitHub Pages cannot directly run Flask/Python.
+         *
+         * When the Flask backend is deployed, replace the
+         * API_BASE_URL below with your deployed backend URL.
+         *
+         * Example:
+         *
+         * const API_BASE_URL = "https://your-backend-url.com/api";
+         *
+         * For now the default value is localhost.
+         * =====================================================
+         */
+
+        const API_BASE_URL = "http://127.0.0.1:5000/api";
+
+
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const buttonText = document.getElementById("buttonText");
+        const loading = document.getElementById("loading");
+        const messageBox = document.getElementById("message");
+
+
+        /*
+         * Show message
+         */
+        function showMessage(message, type) {
+
+            messageBox.textContent = message;
+
+            messageBox.className = "message " + type;
+
+        }
+
+
+        /*
+         * Hide message
+         */
+        function hideMessage() {
+
+            messageBox.textContent = "";
+
+            messageBox.className = "message";
+
+        }
+
+
+        /*
+         * Login form submit
+         */
+        loginForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            hideMessage();
+
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    "Please enter your email and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            /*
+             * Loading state
+             */
+            loginButton.disabled = true;
+
+            buttonText.style.display = "none";
+
+            loading.style.display = "block";
+
+
+            try {
+
+                /*
+                 * Send login request to Flask backend
+                 */
+                const response = await fetch(
+                    API_BASE_URL + "/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                /*
+                 * Successful login
+                 */
+                if (response.ok && data.success) {
+
+                    showMessage(
+                        "Login successful! Welcome to CAREERPATH 🎉",
+                        "success"
+                    );
+
+
+                    /*
+                     * Save user information in browser
+                     */
+                    if (data.user) {
+
+                        localStorage.setItem(
+                            "careerpath_user",
+                            JSON.stringify(data.user)
+                        );
+
+                        localStorage.setItem(
+                            "careerpath_user_id",
+                            data.user.id
+                        );
+
+                        localStorage.setItem(
+                            "careerpath_logged_in",
+                            "true"
+                        );
+                    }
+
+
+                    /*
+                     * Remember email
+                     */
+                    const rememberMe =
+                        document.getElementById("rememberMe").checked;
+
+
+                    if (rememberMe) {
+
+                        localStorage.setItem(
+                            "careerpath_saved_email",
+                            email
+                        );
+
+                    } else {
+
+                        localStorage.removeItem(
+                            "careerpath_saved_email"
+                        );
+                    }
+
+
+                    /*
+                     * Go to dashboard after login
+                     */
+                    setTimeout(function() {
+
+                        window.location.href =
+                            "career-dashboard.html";
+
+                    }, 1000);
+
+                } else {
+
+                    showMessage(
+                        data.message ||
+                        "Invalid email or password.",
+                        "error"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "CAREERPATH Login Error:",
+                    error
+                );
+
+
+                showMessage(
+                    "Backend connection failed. Please make sure the CAREERPATH Flask server is running.",
+                    "error"
+                );
+
+            } finally {
+
+                loginButton.disabled = false;
+
+                buttonText.style.display = "inline";
+
+                loading.style.display = "none";
+
+            }
+
+        });
+
+
+        /*
+         * Load saved email
+         */
+        window.addEventListener("DOMContentLoaded", function() {
+
+            const savedEmail =
+                localStorage.getItem(
+                    "careerpath_saved_email"
+                );
+
+
+            if (savedEmail) {
+
+                document.getElementById("email").value =
+                    savedEmail;
+
+                document.getElementById("rememberMe").checked =
+                    true;
+
+            }
+
+        });
+
+
+        /*
+         * Forgot password
+         *
+         * Full password-reset backend feature can be added later.
+         */
+        function forgotPassword(event) {
+
+            event.preventDefault();
+
+            showMessage(
+                "Password recovery will be available in the next CAREERPATH update.",
+                "success"
+            );
+
+        }
+
+    </script>
+
 </body>
 </html>
+
+      
+           
+
+        
+          
+           
