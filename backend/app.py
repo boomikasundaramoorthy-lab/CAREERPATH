@@ -557,3 +557,178 @@ def health():
         "backend": "online",
         "message": "CAREERPATH API is working successfully"
     })
+from flask import Flask, jsonify
+
+from database import create_database
+from routes import api
+from admin_routes import admin_api
+from recommendation import recommendation_api
+from application_routes import application_api
+
+
+# =========================================================
+# CAREERPATH BACKEND APPLICATION
+# =========================================================
+
+app = Flask(__name__)
+
+
+# =========================================================
+# CREATE DATABASE
+# =========================================================
+
+create_database()
+
+
+# =========================================================
+# REGISTER API BLUEPRINTS
+# =========================================================
+
+# Main APIs
+app.register_blueprint(api)
+
+# Admin Management APIs
+app.register_blueprint(admin_api)
+
+# Career Recommendation APIs
+app.register_blueprint(recommendation_api)
+
+# Application Management APIs
+app.register_blueprint(application_api)
+
+
+# =========================================================
+# HOME / BACKEND STATUS
+# =========================================================
+
+@app.route("/")
+def home():
+
+    return jsonify({
+        "project": "CAREERPATH",
+        "status": "Backend is running",
+        "message": "Smart Career Guidance & Opportunity Portal",
+        "version": "1.0.0"
+    })
+
+
+# =========================================================
+# FEATURES API
+# =========================================================
+
+@app.route("/api/features")
+def features():
+
+    return jsonify({
+
+        "success": True,
+
+        "project": "CAREERPATH",
+
+        "features": [
+
+            "Career Guidance",
+            "Career Quiz",
+            "Career Recommendation",
+            "Skill Gap Analysis",
+
+            "Jobs & Internships",
+            "Courses & Skill Development",
+
+            "Save Opportunities",
+            "Application Tracking",
+
+            "Resume Builder",
+            "Resume Job Match",
+
+            "Interview Simulator",
+            "Interview Question Bank",
+
+            "Career Roadmap",
+            "Career Action Plan",
+
+            "Career Readiness Score",
+            "Career Progress Tracker",
+
+            "AI Career Mentor",
+            "AI Resume Analyzer",
+
+            "Career Simulation Lab",
+            "Career Comparison",
+
+            "Company & Role Explorer",
+
+            "Admin Dashboard"
+        ]
+    })
+
+
+# =========================================================
+# API INFORMATION
+# =========================================================
+
+@app.route("/api")
+def api_information():
+
+    return jsonify({
+
+        "project": "CAREERPATH",
+
+        "message": "CAREERPATH API is working successfully",
+
+        "modules": {
+
+            "main_api": "/api",
+
+            "admin": "/api/admin",
+
+            "recommendation": "/api/recommendation",
+
+            "application": "/api/application"
+        },
+
+        "available_health_checks": [
+
+            "/api/health",
+
+            "/api/admin/health",
+
+            "/api/recommendation/health",
+
+            "/api/application/health"
+        ]
+    })
+
+
+# =========================================================
+# BACKEND HEALTH CHECK
+# =========================================================
+
+@app.route("/health")
+def health():
+
+    return jsonify({
+
+        "success": True,
+
+        "project": "CAREERPATH",
+
+        "backend": "online",
+
+        "status": "healthy",
+
+        "message": "CAREERPATH backend is working successfully"
+    })
+
+
+# =========================================================
+# RUN APPLICATION
+# =========================================================
+
+if __name__ == "__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
