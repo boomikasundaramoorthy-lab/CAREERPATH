@@ -3,216 +3,1103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAREERPATH | Register</title>
+
+    <title>Create Account | CAREERPATH</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Poppins", Arial, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #16002b, #4b176d, #8e44ad, #d98cff);
+            justify-content: center;
             padding: 30px;
+            color: white;
+
+            background:
+                radial-gradient(circle at top left, #8e44ad 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #c471ed 0%, transparent 35%),
+                linear-gradient(135deg, #16002b, #32104f, #4b176d);
+
+            overflow-x: hidden;
         }
 
-        .container {
+        body::before {
+            content: "";
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(247, 143, 179, 0.18);
+            top: -120px;
+            right: -90px;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(196, 113, 237, 0.18);
+            bottom: -110px;
+            left: -90px;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .register-wrapper {
             width: 100%;
-            max-width: 460px;
-            background: rgba(255, 255, 255, 0.12);
+            max-width: 1080px;
+            min-height: 680px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+
+            overflow: hidden;
+
             backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 28px;
-            padding: 40px 35px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .intro-section {
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(142, 68, 173, 0.72),
+                    rgba(75, 23, 109, 0.58)
+                );
         }
 
         .logo {
-            text-align: center;
-            color: white;
             font-size: 30px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            margin-bottom: 42px;
+        }
+
+        .logo span {
+            color: #f78fb3;
+        }
+
+        .intro-section h1 {
+            font-size: 43px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .intro-section h1 span {
+            background: linear-gradient(
+                90deg,
+                #f78fb3,
+                #c471ed
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-section p {
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 430px;
+        }
+
+        .benefits {
+            margin-top: 32px;
+
+            display: grid;
+            gap: 14px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 14px;
+        }
+
+        .benefit-icon {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .form-section {
+            padding: 50px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(10, 0, 25, 0.28);
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 410px;
+        }
+
+        .register-card h2 {
+            font-size: 31px;
             margin-bottom: 8px;
         }
 
-        .tagline {
-            text-align: center;
-            color: #ead7ff;
+        .subtitle {
+            color: rgba(255, 255, 255, 0.62);
             font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            text-align: center;
-            color: white;
             margin-bottom: 25px;
-            font-size: 25px;
         }
 
-        .input-group {
+        .message {
+            display: none;
+
+            padding: 13px 15px;
+            border-radius: 12px;
+
             margin-bottom: 18px;
+
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        label {
+        .message.success {
             display: block;
-            color: #f7eaff;
-            font-size: 14px;
-            margin-bottom: 7px;
+
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(46, 204, 113, 0.35);
+
+            color: #9ff3bd;
         }
 
-        input,
-        select {
+        .message.error {
+            display: block;
+
+            background: rgba(255, 82, 82, 0.14);
+            border: 1px solid rgba(255, 82, 82, 0.35);
+
+            color: #ffb3b3;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 16px;
+            opacity: 0.65;
+
+            pointer-events: none;
+        }
+
+        .input-box input,
+        .input-box select {
             width: 100%;
-            padding: 14px 16px;
-            border: none;
+
+            padding: 13px 15px 13px 43px;
+
+            border-radius: 13px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
             outline: none;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.92);
-            color: #351044;
-            font-size: 14px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            color: white;
+
+            font-size: 13px;
+
+            transition: 0.3s ease;
         }
 
-        input:focus,
-        select:focus {
-            box-shadow: 0 0 0 3px rgba(225, 170, 255, 0.45);
+        .input-box select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .input-box select option {
+            background: #32104f;
+            color: white;
+        }
+
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.38);
+        }
+
+        .input-box input:focus,
+        .input-box select:focus {
+            border-color: #c471ed;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 0 0 3px rgba(196, 113, 237, 0.12);
+        }
+
+        .password-hint {
+            margin-top: 6px;
+
+            color: rgba(255, 255, 255, 0.42);
+
+            font-size: 11px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            margin: 18px 0;
+
+            color: rgba(255, 255, 255, 0.55);
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .terms input {
+            margin-top: 2px;
+            accent-color: #c471ed;
+        }
+
+        .terms a {
+            color: #f78fb3;
+            text-decoration: none;
         }
 
         .register-btn {
             width: 100%;
-            padding: 15px;
-            margin-top: 8px;
+
+            padding: 14px;
+
             border: none;
-            border-radius: 15px;
-            background: linear-gradient(90deg, #c471ed, #f78fb3);
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 14px;
+
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(220, 120, 240, 0.3);
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8e44ad,
+                    #c471ed,
+                    #f78fb3
+                );
+
+            box-shadow:
+                0 10px 25px rgba(196, 113, 237, 0.25);
+
+            transition: 0.3s ease;
         }
 
         .register-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(220, 120, 240, 0.45);
+
+            box-shadow:
+                0 14px 30px rgba(196, 113, 237, 0.35);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .login-text {
             text-align: center;
-            color: #ead7ff;
-            font-size: 14px;
-            margin-top: 22px;
+
+            margin-top: 20px;
+
+            color: rgba(255, 255, 255, 0.58);
+
+            font-size: 13px;
         }
 
         .login-text a {
-            color: #ffffff;
-            font-weight: 700;
+            color: #f78fb3;
+
             text-decoration: none;
+
+            font-weight: 700;
         }
 
         .login-text a:hover {
-            text-decoration: underline;
+            color: #d9a1ff;
         }
 
         .back-home {
             display: block;
+
             text-align: center;
-            margin-top: 18px;
-            color: #f3ddff;
+
+            margin-top: 15px;
+
+            color: rgba(255, 255, 255, 0.55);
+
             text-decoration: none;
-            font-size: 13px;
+
+            font-size: 12px;
         }
 
         .back-home:hover {
             color: white;
         }
 
-        @media (max-width: 500px) {
-            .container {
-                padding: 32px 24px;
+        .loading {
+            display: none;
+
+            width: 17px;
+            height: 17px;
+
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+
+            border-radius: 50%;
+
+            animation: spin 0.7s linear infinite;
+
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            body {
+                padding: 18px;
             }
 
-            .logo {
-                font-size: 26px;
+            .register-wrapper {
+                grid-template-columns: 1fr;
+                min-height: auto;
             }
+
+            .intro-section {
+                padding: 40px 30px;
+            }
+
+            .intro-section h1 {
+                font-size: 35px;
+            }
+
+            .form-section {
+                padding: 40px 30px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .intro-section,
+            .form-section {
+                padding: 30px 20px;
+            }
+
+            .intro-section h1 {
+                font-size: 30px;
+            }
+
+            .register-card h2 {
+                font-size: 27px;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="register-wrapper">
 
-        <div class="logo">CAREERPATH</div>
+        <!-- INTRO SECTION -->
+        <section class="intro-section">
 
-        <div class="tagline">
-            Your Journey • Your Skills • Your Future
-        </div>
-
-        <h2>Create Your Account ✨</h2>
-
-        <form>
-
-            <div class="input-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" required>
+            <div class="logo">
+                CAREER<span>PATH</span>
             </div>
 
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="Enter your email" required>
+            <h1>
+                Start Your<br>
+                <span>Career Journey</span>
+            </h1>
+
+            <p>
+                Create your CAREERPATH account and discover
+                personalized career opportunities, useful skills,
+                learning resources and job recommendations.
+            </p>
+
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <span>Personalized Career Guidance</span>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">💼</div>
+                    <span>Explore Jobs & Internships</span>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">📚</div>
+                    <span>Discover Skills & Courses</span>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🚀</div>
+                    <span>Build Your Future Career</span>
+                </div>
+
             </div>
 
-            <div class="input-group">
-                <label>Phone Number</label>
-                <input type="tel" placeholder="Enter your phone number" required>
+        </section>
+
+
+        <!-- REGISTER FORM -->
+        <section class="form-section">
+
+            <div class="register-card">
+
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Join CAREERPATH and start building your future.
+                </p>
+
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+
+                <form id="registerForm">
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                📱
+                            </span>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter your phone number"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EDUCATION -->
+
+                    <div class="form-group">
+
+                        <label for="education">
+                            Education
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🎓
+                            </span>
+
+                            <select
+                                id="education"
+                                required
+                            >
+
+                                <option value="">
+                                    Select your education
+                                </option>
+
+                                <option value="BCA">
+                                    BCA
+                                </option>
+
+                                <option value="BSc">
+                                    B.Sc
+                                </option>
+
+                                <option value="BCom">
+                                    B.Com
+                                </option>
+
+                                <option value="BE">
+                                    B.E / B.Tech
+                                </option>
+
+                                <option value="BA">
+                                    B.A
+                                </option>
+
+                                <option value="MCA">
+                                    MCA
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                📍
+                            </span>
+
+                            <input
+                                type="text"
+                                id="location"
+                                placeholder="Enter your city"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Create a password"
+                                minlength="6"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="password-hint">
+                            Use at least 6 characters.
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                🔐
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Re-enter your password"
+                                minlength="6"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <span>
+                            I agree to create my CAREERPATH account
+                            and use the platform responsibly.
+                        </span>
+
+                    </label>
+
+
+                    <!-- REGISTER BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="register-btn"
+                        id="registerButton"
+                    >
+
+                        <span id="buttonText">
+                            Create CAREERPATH Account
+                        </span>
+
+                        <span
+                            class="loading"
+                            id="loading"
+                        ></span>
+
+                    </button>
+
+                </form>
+
+
+                <p class="login-text">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </p>
+
+
+                <a
+                    href="index.html"
+                    class="back-home"
+                >
+                    ← Back to Home
+                </a>
+
             </div>
 
-            <div class="input-group">
-                <label>Education</label>
-                <select required>
-                    <option value="">Select your education</option>
-                    <option>BCA</option>
-                    <option>B.Sc</option>
-                    <option>B.Com</option>
-                    <option>BBA</option>
-                    <option>Other</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" placeholder="Create a password" required>
-            </div>
-
-            <div class="input-group">
-                <label>Confirm Password</label>
-                <input type="password" placeholder="Confirm your password" required>
-            </div>
-
-            <button type="submit" class="register-btn">
-                Create Account
-            </button>
-
-        </form>
-
-        <div class="login-text">
-            Already have an account?
-            <a href="login.html">Login</a>
-        </div>
-
-        <a href="index.html" class="back-home">
-            ← Back to Home
-        </a>
+        </section>
 
     </div>
 
+
+    <script>
+
+        /*
+         * =====================================================
+         * CAREERPATH REGISTER - BACKEND CONNECTION
+         * =====================================================
+         *
+         * Flask API endpoint:
+         *
+         * POST /api/register
+         *
+         * The backend route already exists in routes.py.
+         *
+         * After the Flask backend is deployed, change this
+         * URL to the deployed backend address.
+         * =====================================================
+         */
+
+        const API_BASE_URL =
+            "http://127.0.0.1:5000/api";
+
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+        const registerButton =
+            document.getElementById("registerButton");
+
+        const buttonText =
+            document.getElementById("buttonText");
+
+        const loading =
+            document.getElementById("loading");
+
+        const messageBox =
+            document.getElementById("message");
+
+
+        /*
+         * Show message
+         */
+        function showMessage(message, type) {
+
+            messageBox.textContent = message;
+
+            messageBox.className =
+                "message " + type;
+
+        }
+
+
+        /*
+         * Hide message
+         */
+        function hideMessage() {
+
+            messageBox.textContent = "";
+
+            messageBox.className =
+                "message";
+
+        }
+
+
+        /*
+         * Register form
+         */
+        registerForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                hideMessage();
+
+
+                const name =
+                    document.getElementById("name")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document.getElementById("email")
+                    .value
+                    .trim();
+
+
+                const phone =
+                    document.getElementById("phone")
+                    .value
+                    .trim();
+
+
+                const education =
+                    document.getElementById("education")
+                    .value;
+
+
+                const location =
+                    document.getElementById("location")
+                    .value
+                    .trim();
+
+
+                const password =
+                    document.getElementById("password")
+                    .value;
+
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword")
+                    .value;
+
+
+                /*
+                 * Check password
+                 */
+                if (password !== confirmPassword) {
+
+                    showMessage(
+                        "Passwords do not match.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * Check password length
+                 */
+                if (password.length < 6) {
+
+                    showMessage(
+                        "Password must contain at least 6 characters.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * Loading state
+                 */
+                registerButton.disabled = true;
+
+                buttonText.style.display =
+                    "none";
+
+                loading.style.display =
+                    "block";
+
+
+                try {
+
+                    /*
+                     * Send data to Flask backend
+                     */
+                    const response = await fetch(
+                        API_BASE_URL + "/register",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                email: email,
+
+                                password: password,
+
+                                education: education,
+
+                                phone: phone,
+
+                                location: location
+
+                            })
+                        }
+                    );
+
+
+                    const data =
+                        await response.json();
+
+
+                    /*
+                     * Successful registration
+                     */
+                    if (response.ok && data.success) {
+
+                        showMessage(
+                            "Account created successfully! 🎉 Redirecting to login...",
+                            "success"
+                        );
+
+
+                        /*
+                         * Store newly created user ID
+                         */
+                        if (data.user_id) {
+
+                            localStorage.setItem(
+                                "careerpath_user_id",
+                                data.user_id
+                            );
+
+                        }
+
+
+                        /*
+                         * Redirect to login
+                         */
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            1500
+                        );
+
+
+                    } else {
+
+                        /*
+                         * Backend error
+                         */
+                        showMessage(
+                            data.message ||
+                            "Unable to create account.",
+                            "error"
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "CAREERPATH Register Error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        "Backend connection failed. Please make sure the CAREERPATH Flask server is running.",
+                        "error"
+                    );
+
+
+                } finally {
+
+                    registerButton.disabled =
+                        false;
+
+                    buttonText.style.display =
+                        "inline";
+
+                    loading.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    </script>
+
 </body>
 </html>
+      
